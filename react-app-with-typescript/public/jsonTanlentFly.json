@@ -1,0 +1,53 @@
+[
+    {
+      "Q": "How can you widen a column in Excel to show all the data?",
+      "Choices": "a: Right-click column, select Format Cells, then Best-Fit | b: Double-click column | c: Right-click column, select Best-Fit | d: Double-click the vertical boundary between columns",
+      "Correct": "d"
+    },
+    {
+      "Q": "Which functions check for the presence of numerical or nonnumerical characters in cells?",
+      "Choices": "a: ISNUMBER and ISTEXT | b: ISNUMBER and ISALPHA | c: ISVALUE and ISNUMBER | d: ISVALUE and ISTEXT",
+      "Correct": "a"
+    },
+    {
+      "Q": "What contents will appear in cells A3, A4, and A5 when dragging the fill handle of cell A2 downward?",
+      "Choices": "a: Jan, Jan, Jan | b: Feb, Mar, blank cell | c: Feb, Mar, Apr | d: FEB, MAB, APR",
+      "Correct": "c"
+    },
+    {
+      "Q": "If cell A3 contains 'THE DEATH OF CHIVALRY', what will the function =PROPER(A3) return?",
+      "Choices": "a: the death of chivalry | b: The death of Chivalry | c: THE DEATH OF CHIVALRY | d: The Death Of Chivalry",
+      "Correct": "d"
+    },
+    {
+      "Q": "Before using Data > Subtotal, what must you do?",
+      "Choices": "a: Sort by the data in Column E | b: Format the data in Column D | c: Sort by the data in Column D | d: Format the data in Column E",
+      "Correct": "c"
+    },
+    {
+      "Q": "When editing a cell, how do you cycle between relative, mixed, and absolute cell references?",
+      "Choices": "a: Alt+F4 (Windows) or Option+F4 (Mac) | b: Alt+Shift+4 (Windows) or Option+Shift+4 (Mac) | c: Ctrl+Shift+4 (Windows) or Command+Shift+4 (Mac) | d: F4 (Windows) or Command+T (Mac)",
+      "Correct": "d"
+    },
+    {
+      "Q": "How can you add a line chart showing sales trends in a single cell?",
+      "Choices": "a: Add an image to a comment | b: Add a hyperlink to another worksheet | c: Add an image to the worksheet | d: Add a sparkline",
+      "Correct": "d"
+    },
+    {
+      "Q": "What is the best way to activate Excel Help system?",
+      "Choices": "a: Right-click anywhere and select Help | b: Press F1 or click the Help tab in the ribbon | c: Press F10 | d: All of these answers",
+      "Correct": "b"
+    },
+    {
+      "Q": "Which format will display the value 27,500,000 as 27.5?",
+      "Choices": "a: ##,###,, | b: ###.0,, | c: 999.9,, | d: ###,###.0,",
+      "Correct": "b"
+    },
+    {
+      "Q": "When using Goal Seek, how many inputs can you vary to find a target result?",
+      "Choices": "a: three inputs | b: four inputs | c: two inputs | d: one input",
+      "Correct": "d"
+    }
+  ]
+  
