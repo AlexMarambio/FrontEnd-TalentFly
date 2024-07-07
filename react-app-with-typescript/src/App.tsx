@@ -19,8 +19,8 @@ function App() {
 
   return (
     <div className="App">
-      <img src='https://talenfly.com/wp-content/uploads/2021/12/Logo_Talenfly-300x83.png'></img>
-      <h1>Excel Quiz</h1>
+      <img src='https://talenfly.com/wp-content/uploads/2021/12/cropped-Mesa-de-trabajo-%e2%80%93-2-180x180.jpg' className='logoTF'></img>
+      <h1 className='colorTF'>Excel Quiz</h1>
       <ul>
         {
           questions.map((quest, index) => {
