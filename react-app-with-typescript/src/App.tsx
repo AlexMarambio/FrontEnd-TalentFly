@@ -19,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <img src='https://talenfly.com/wp-content/uploads/2021/12/Logo_Talenfly-300x83.png'></img>
       <h1>Excel Quiz</h1>
       <ul>
         {
@@ -41,6 +42,7 @@ function App() {
           })
         }
       </ul>
+      <button className='buttonTF'>Submit</button>
     </div>
   );
 }

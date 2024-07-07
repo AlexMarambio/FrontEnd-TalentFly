@@ -7,6 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: grid;
   place-content: center;
+  background-color: rgb(248, 232, 255);
 }
 
 code {
@@ -21,6 +22,7 @@ ul form {
   margin-bottom: 16px;
   max-width: 700px;
   padding: 8px 32px;
+  background-color: rgb(255, 255, 255);
 }
 
 label {
@@ -32,4 +34,16 @@ label {
 input {
   margin-right: 8px;
   vertical-align: middle;
+}
+
+.buttonTF{
+  background-color: rgb(165, 103, 223);
+  border-radius: 15px;
+  border: 2px solid #eee;
+  width: 300px;
+  height: 70px;
+  color: aliceblue;
+  margin-bottom: 30px;
+  margin-top: 15px;
+  font-size: 150%;
 }
