@@ -112,7 +112,7 @@ const App: React.FC = () => {
           )}
           {showAnswers && (
             <div className="mt-4">
-              <h2 className="text-lg font-bold">Respuestas Seleccionadas:</h2>
+              <h2 className="text-lg font-bold">Respuestas Seleccionadasss:</h2>
               <ul>
                 {questions.map((question, index) => (
                   <li key={index}>
