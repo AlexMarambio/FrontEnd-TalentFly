@@ -1,48 +1,61 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import './App.css';
 
-type Question = {
-  Q: string;
-  Choices: string;
-  Correct: string;
-};
+
 
 function App() {
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [user, setUser] = useState([
+    {
+      nick: "Alex M",
+      quizLevel: "Junior",
+      percentage: 80,
+      description: "Soy un programador novato"
+    }
+  ]);
 
-  useEffect(() => {
-    fetch('/jsonTanlentFly.json')
-      .then(response => response.json())
-      .then(data => setQuestions(data))
-      .catch(error => console.error('Error no se encuentran las preguntas:', error));
-  }, []);
+  const [company, setCompany] = useState([
+    {
+      comapanyName: "TalentFly",
+      quizLevel: "Junior",
+      percentage: 80,
+      slogan: "Looking for new employees"
+    },
+    {
+      comapanyName: "Google",
+      quizLevel: "Junior",
+      percentage: 70,
+      slogan: "Looking for good employees"
+    }
+  ]);
+
+
 
   return (
     <div className="App">
       <img src='https://talenfly.com/wp-content/uploads/2021/12/cropped-Mesa-de-trabajo-%e2%80%93-2-180x180.jpg' className='logoTF'></img>
-      <h1 className='colorTF'>Excel Quiz</h1>
+      {
+      user.map(u => {
+        return(
+          <h1 className='colorTF'>Welcome {u.nick}</h1>
+          
+        )
+      })
+      }
       <ul>
         {
-          questions.map((quest, index) => {
-            const choices = quest.Choices.split(' | ').map(choice => choice.split(': '));
-
+          company.map((comp, index) => {
             return (
               <form key={index}>
-                <h2>{quest.Q}</h2>
-                {
-                  choices.map(([letter, text]) => (
-                    <label key={letter}>
-                      <input type="radio" name={`answer-${index}`} value={`option${letter.toUpperCase()}`} />
-                      {`${letter.toUpperCase()}) ${text}`}
-                    </label>
-                  ))
-                }
+                <h2>{comp.comapanyName}</h2>
+                <p>{comp.slogan}</p>
+                <p>Looking for: {comp.percentage}% {comp.quizLevel}</p>
+                <button className='buttonTF'>Apply</button>
               </form>
             );
           })
         }
       </ul>
-      <button className='buttonTF'>Submit</button>
+      
     </div>
   );
 }

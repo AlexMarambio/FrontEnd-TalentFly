@@ -5,9 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: grid;
-  place-content: center;
-  background-color: rgb(246, 252, 255);
+    display: flex;
 }
 
 code {
@@ -16,19 +14,20 @@ code {
 }
 
 ul form {
+  display: block;
+  text-align: left;
   border-radius: 25px;
   border: 2px solid #7a69de;
   list-style: none;
   margin-bottom: 16px;
-  max-width: 700px;
+  max-width: 200px;
   padding: 32px 40px;
   background-color: rgb(255, 255, 255);
 }
 
 
-label {
-  display: block;
-  text-align: left;
+.label {
+
   margin-bottom: 8px;
 }
 
@@ -41,8 +40,8 @@ input {
   background-color: #7a69de;
   border-radius: 25px;
   border: 5px solid #7a69de;
-  width: 300px;
-  height: 70px;
+  width: 150px;
+  height: 50px;
   color: aliceblue;
   margin-bottom: 30px;
   margin-top: 15px;
