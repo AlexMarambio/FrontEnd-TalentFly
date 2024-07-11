@@ -13,8 +13,8 @@ interface ResultPageProps {
   //photoUrl: string;
   answers: { [key: string]: string };
   questions: Question[];
-  finalScore?: number; // Propiedad opcional para mostrar el puntaje final
-  handleRestart?: () => void; // Función opcional para reiniciar el cuestionario
+  finalScore?: number; //puntaje final
+  handleRestart?: () => void; // para reiniciar el cuestionario
 }
 
 const Answers: React.FC<ResultPageProps> = ({answers, questions, finalScore, handleRestart }) => {

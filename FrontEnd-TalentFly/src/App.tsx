@@ -96,6 +96,11 @@ const App: React.FC = () => {
           <img src="https://talenfly.com/wp-content/uploads/2021/12/Logo_Talenfly-300x83.png" alt="Logo" className="h-16" /> {/* Adjusted size of the logo */}
         </div>
       </nav>
+
+      <div className = "progress-bar-container" >
+          <div className="progress-bar"></div>
+      </div>
+   
       <div className="flex-grow flex flex-col justify-center items-center">
         <div className="p-6 max-w-md w-full">
           {!showAnswers && questions.length > 0 && (
