@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Question from './components/Questions';
 import questionsData from './data.json';
+import Answers from './Answers';
 
 interface QuestionData {
   Q: string;
@@ -21,6 +22,9 @@ const App: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showAnswers, setShowAnswers] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [finalScore, setFinalScore] = useState(0);
+  const [showResults, setShowResults] = useState(false);
+
 
   useEffect(() => {
     const processQuestions = (data: QuestionData[]): ProcessedQuestionData[] => {
@@ -62,6 +66,25 @@ const App: React.FC = () => {
       setError(null); // Clear error when moving to the previous question
     }
   };
+
+  //const para volver o continuar en el resultado final
+
+  const handleContinue = () => {
+    //alert('Agregar cositas aqui pal futuro')
+    const correctAnswers = questions.filter(
+      (question) => answers[question.Q] === question.Correct
+    ).length;
+    const score = (correctAnswers / questions.length) * 100;
+
+    setShowResults(true);
+    setFinalScore(score);
+  }
+
+  const handleRestart = () => {
+    setCurrentQuestionIndex(0);
+    setShowAnswers(false);
+  }
+
 
   return (
     <div className="flex flex-col h-screen">
@@ -111,16 +134,33 @@ const App: React.FC = () => {
             </>
           )}
           {showAnswers && (
-            <div className="mt-4">
-              <h2 className="text-lg font-bold">Respuestas Seleccionadasss:</h2>
-              <ul>
+            <div className={`mt-4 p-4 rounded-3xl shadow-lg bg-white ${error ? 'border border-red-500' : 'border border-[#7a69de]'}`}>
+              <h2 className="text-lg font-bold mb-4">Respuestas Seleccionadas:</h2>
+              <ul className="space-y-2">
                 {questions.map((question, index) => (
-                  <li key={index}>
-                    {question.Q}: {answers[question.Q]}
+                  <li key={index} className='norder-b border-gray-300 pb-2'>
+                    <p className="font-semibold">{index + 1}. {question.Q}</p>
+                    <p>Respuesta: {answers[question.Q]}</p>
                   </li>
                 ))}
               </ul>
+              <div className='flex justify-between mt-4'>
+                <button onClick={handleRestart} className="bg-gray-500 text-white py-2 px-4 rounded-md">
+                  Volver
+                </button>
+                <button onClick={handleContinue} className="bg-[#8877e4] text-white py-2 px-4 rounded-md">
+                  Confirmar
+                </button>
+              </div>
             </div>
+          )}
+          {showResults && (
+            <Answers
+              questions={questions}
+              answers={answers}
+              finalScore={finalScore}
+              handleRestart={handleRestart}
+            />
           )}
         </div>
       </div>
