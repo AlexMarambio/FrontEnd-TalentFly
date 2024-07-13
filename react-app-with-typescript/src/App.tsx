@@ -6,13 +6,13 @@ import './App.css';
 function App() {
   const [user, setUser] = useState([
     {
-      nick: "Alex M",
-      quizLevel: "Junior",
-      percentage: 80,
-      email: "alex@mail.cl",
-      description: "Soy un programador novato",
+      nick: "Diego Pérez",
+      quizLevel: "Senior",
+      percentage: 100,
+      email: "diego@mail.cl",
+      description: "Soy un programador hace 4 años",
       studies: "Informatica UDP",
-      avatar: "https://i.pravatar.cc/150?u=alexml",
+      avatar: "https://i.pravatar.cc/150?u=diegoperezca",
       experience:"none"
     }
   ]);
@@ -20,8 +20,8 @@ function App() {
   const [company, setCompany] = useState([
     {
       comapanyName: "TalentFly",
-      quizLevel: "Junior",
-      percentage: 80,
+      quizLevel: "Senior",
+      percentage: 100,
       slogan: "Looking for new employees"
     },
     {
