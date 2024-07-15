@@ -12,11 +12,11 @@ function App() {
   });
 
   const data = {
-    labels: ['Experiencia', 'Power Skill', 'Competencias Técnicas'],
+    labels: ['Experience', 'Power Skill', 'Technical Competencies'],
     datasets: [{
       data: [skills.experiencia, skills.powerSkill, skills.competenciasTecnicas],
       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+      hoverBackgroundColor: ['#FF6387', '#36A2EC', '#FFCE54']
     }]
   };
 
@@ -109,7 +109,7 @@ function App() {
     <div className="App">
       <nav className="relative h-28 mb-10">
         <video autoPlay muted loop className="absolute w-full h-full object-cover">
-          <source src="https://talenfly.com/wp-content/uploads/2021/12/pexels-rostislav-uzunov-9150545.mp4" type="video/mp4" />
+          <source src="https://talenfly.com/wp-content/uploads/2021/12/pexels-weldi-studio-design-8675550.mp4" type="video/mp4" />
         </video>
         <div className="relative flex items-center justify-center h-full">
           <img src="https://talenfly.com/wp-content/uploads/2021/12/Logo_Talenfly-300x83.png" alt="Logo" className="h-16" />
@@ -118,16 +118,20 @@ function App() {
       {
         user.map(u => (
           <div key={u.nick} className="text-center">
-            <h1 className='text-5xl text-purple-700 mb-6 font-semibold'>Welcome {u.nick}</h1>
-            <form className='block bg-[#e5d2f5] p-8 rounded-lg shadow-md userCardTF  mx-auto lg:flex'>
+            <h1 className='text-5xl text-purple-700 mb-6 font-bold'>Bienvenido {u.nick}</h1>
+            <form className='block  rounded-3xl userCardTF  mx-auto lg:flex'>
+            <div className='relative bg-[#CEE9F5] shadow-md rounded-3xl overflow-hidden'>
               <div>
+                <img src="https://img.freepik.com/vector-gratis/fondo-banner-onda-azul-que-fluye-moderno_1035-19862.jpg" className='absolute top-0 left-0 w-full object-cover z-0 '/>
+              </div>
+              <div className='relative z-10 p-8'>
                 <img src={u.avatar} alt="Avatar" className="w-32 h-32 mx-auto rounded-full mb-4" />
-                <h3 className="text-xl font-semibold mb-7">{u.nick}</h3>
+                <h3 className="text-xl font-semibold mb-24">{u.nick}</h3>
                 <p className='text-left'><strong>Correo:</strong> {u.email}</p>
                 <p className='text-left'><strong>Perfil profesional:</strong> {u.studies}</p>
                 <p className='text-left'><strong>Experiencia laboral:</strong> {u.experience}</p>
                 <p className='text-left'>{u.description}</p>
-                <div className='bg-[#dcb8f9] rounded-lg p-4 mt-7'>
+                <div className='bg-[#C6D7E8] rounded-2xl p-4 mt-7'>
                   <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
                     {
                       usermedal.map((medal, index) => (
@@ -142,22 +146,23 @@ function App() {
                   </ul>
                 </div>
               </div>
+            </div>
 
-              <div className="ml-16 max-w-sm">
-                <h2 className="text-xl mb-4">Distribución de Habilidades</h2>
+              <div className="ml-16 max-w-sm mt-16 bg-[#C3FFEB] shadow-md rounded-3xl p-8">
+                <h2 className="text-xl mb-4 font-semibold">Habilidades</h2>
                 <Doughnut data={data} />
                 <div className="mt-4 space-y-4">
-                  <div>
+                  <div className='text-left'>
                     <label>Experiencia</label>
-                    <input type="number" name="experiencia" value={skills.experiencia} onChange={handleChange} className="ml-2 p-1 rounded" />
+                    <input type="number" name="experiencia" value={skills.experiencia} onChange={handleChange} className="ml-2 p-1 rounded fiftypx" />
                   </div>
-                  <div>
+                  <div className='text-left'>
                     <label>Power Skill</label>
-                    <input type="number" name="powerSkill" value={skills.powerSkill} onChange={handleChange} className="ml-2 p-1 rounded" />
+                    <input type="number" name="powerSkill" value={skills.powerSkill} onChange={handleChange} className="ml-2 p-1 rounded fiftypx" />
                   </div>
-                  <div>
+                  <div className='text-left'>
                     <label>Competencias Técnicas</label>
-                    <input type="number" name="competenciasTecnicas" value={skills.competenciasTecnicas} onChange={handleChange} className="ml-2 p-1 rounded" />
+                    <input type="number" name="competenciasTecnicas" value={skills.competenciasTecnicas} onChange={handleChange} className="ml-2 p-1 rounded fiftypx" />
                   </div>
                 </div>
               </div>
@@ -165,19 +170,20 @@ function App() {
           </div>
         ))
       }
-
-      <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 mt-10'>
-        {
-          company.map((comp, index) => (
-            <form key={index} className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold">{comp.comapanyName}</h2>
-              <p className="text-gray-700">{comp.slogan}</p>
-              <p className="text-gray-700">Looking for: {comp.percentage}% {comp.quizLevel}</p>
-              <button className='bg-purple-700 text-white py-2 px-4 rounded-full mt-4'>Apply</button>
-            </form>
-          ))
-        }
-      </ul>
+      <div className='block  p-8 rounded-3xl  userCardTF  mx-auto lg:flex'>
+        <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6  mt-10'>
+          {
+            company.map((comp, index) => (
+              <form key={index} className="bg-white p-6 rounded-lg shadow-md">
+                <h2 className="text-2xl font-bold">{comp.comapanyName}</h2>
+                <p className="text-gray-700">{comp.slogan}</p>
+                <p className="text-gray-700">Looking for: {comp.percentage}% {comp.quizLevel}</p>
+                <button className='bg-purple-700 text-white py-2 px-4 rounded-full mt-4'>Apply</button>
+              </form>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   );
 }

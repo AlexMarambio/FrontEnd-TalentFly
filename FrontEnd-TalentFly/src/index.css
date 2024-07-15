@@ -4,5 +4,10 @@
 
 .userCardTF
 {
-    max-width: 1000px;
+    max-width: 1170px;
+}
+
+.fiftypx
+{
+    max-width: 50px;
 }
