@@ -131,6 +131,9 @@ function App() {
                 <p className='text-left'><strong>Perfil profesional:</strong> {u.studies}</p>
                 <p className='text-left'><strong>Experiencia laboral:</strong> {u.experience}</p>
                 <p className='text-left'>{u.description}</p>
+                <div className='flex justify-end'>
+                  <button className='bg-yellow-600 text-white py-2 px-4 rounded-full mt-4'>Agregar CV</button>
+                </div>
                 <div className='bg-[#C6D7E8] rounded-2xl p-4 mt-7'>
                   <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
                     {
@@ -178,7 +181,7 @@ function App() {
                 <h2 className="text-2xl font-bold">{comp.comapanyName}</h2>
                 <p className="text-gray-700">{comp.slogan}</p>
                 <p className="text-gray-700">Looking for: {comp.percentage}% {comp.quizLevel}</p>
-                <button className='bg-purple-700 text-white py-2 px-4 rounded-full mt-4'>Apply</button>
+                <button className='bg-purple-700 text-white py-2 px-4 rounded-full mt-4'>Postular</button>
               </form>
             ))
           }
