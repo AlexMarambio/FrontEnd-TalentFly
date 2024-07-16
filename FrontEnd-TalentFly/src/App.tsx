@@ -30,31 +30,31 @@ function App() {
 
   const [usermedal, setUserMedal] = useState([
     {
-      logo: "https://images.freeimages.com/fic/images/icons/2794/metro_ui/512/excel_2013.png?fmt=webp&h=350",
+      logo: "https://github.com/AlexMarambio/FrontEnd-TalentFly/blob/alex2.0/imagestalentflymedal/medalla-excel.png?raw=true",
       topic: "Excel",
       level: "Middle",
       score: 70
     },
     {
-      logo: "https://cdn.icon-icons.com/icons2/1495/PNG/512/python_103279.png",
+      logo: "https://github.com/AlexMarambio/FrontEnd-TalentFly/blob/alex2.0/imagestalentflymedal/medalla-python.png?raw=true",
       topic: "Python",
       level: "Basic",
       score: 80
     },
     {
-      logo: "https://static-00.iconduck.com/assets.00/typescript-icon-icon-512x512-yh0yu3ta.png",
+      logo: "https://github.com/AlexMarambio/FrontEnd-TalentFly/blob/alex2.0/imagestalentflymedal/medalla-ts.png?raw=true",
       topic: "Typescript",
       level: "Middle",
       score: 70
     },
     {
-      logo: "https://miro.medium.com/v2/resize:fit:700/0*sZ1IzKNMKqOSbwHU.jpg",
+      logo: "https://github.com/AlexMarambio/FrontEnd-TalentFly/blob/alex2.0/imagestalentflymedal/medalla-cpp.png?raw=true",
       topic: "c++",
       level: "Senior",
       score: 100
     },
     {
-      logo: "https://www.muylinux.com/wp-content/uploads/2022/05/DockerDesktop.png",
+      logo: "https://github.com/AlexMarambio/FrontEnd-TalentFly/blob/alex2.0/imagestalentflymedal/medalla-docker.png?raw=true",
       topic: "Docker",
       level: "Junior",
       score: 40
@@ -66,7 +66,7 @@ function App() {
       nick: "Alex Marambio",
       email: "alexm@tfmail.cl",
       description: "Soy un programador hace 4 años. Me gusta el café, los juego, animales, hacer videos en youtube. Busco trabajo de programador o diseñador web y videojuegos. Soy excelente estudiante.",
-      studies: "Informatica UDP",
+      studies: "Ingeniería Civil Informática - Universidad Diego Portales",
       avatar: "https://i.pravatar.cc/150?u=alexmuñoz",
       experience: "1 año"
     }
@@ -117,8 +117,8 @@ function App() {
       </nav>
       {
         user.map(u => (
-          <div key={u.nick} className="text-center">
-            <h1 className='text-5xl text-purple-700 mb-6 font-bold'>Bienvenido {u.nick}</h1>
+          <div key={u.nick} className="text-center m-4">
+            <h1 className='text-5xl text-[#7a69de] mb-6 font-bold'>Bienvenido {u.nick}</h1>
             <form className='block  rounded-3xl userCardTF  mx-auto lg:flex'>
             <div className='relative bg-[#CEE9F5] shadow-lg rounded-3xl overflow-hidden border-2'>
               <div>
@@ -128,19 +128,13 @@ function App() {
                 <img src={u.avatar} alt="Avatar" className="w-32 h-32 mx-auto rounded-full mb-4" />
                 <h3 className="text-xl font-semibold mb-24">{u.nick}</h3>
                 <p className='text-left'><strong>Correo:</strong> {u.email}</p>
-                <p className='text-left'><strong>Perfil profesional:</strong> {u.studies}</p>
-                <p className='text-left'><strong>Experiencia laboral:</strong> {u.experience}</p>
                 <p className='text-left'>{u.description}</p>
-                <div className='flex justify-end'>
-                  <button className='bg-blue-500 text-white py-2 px-4 rounded-full mt-4 hover:bg-indigo-500  transition ease-in-out delay-100'>Agregar CV</button>
-                </div>
                 <div className='bg-[#C6D7E8] rounded-2xl p-4 mt-7'>
                   <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
                     {
                       usermedal.map((medal, index) => (
                         <ul key={index} className="">
-                          <img src="https://static.vecteezy.com/system/resources/thumbnails/021/979/332/small/gold-medal-with-red-ribbon-in-flat-style-free-png.png" alt="Medal" className="w-13 h-16 mx-auto mb-2" />
-                          <img src={medal.logo} alt='logo' className='absolute z-10 rounded-full w-9 h-9 mx-auto mb-2 -translate-y-16 translate-x-36'/>
+                          <img src={medal.logo} alt="Medal" className="w-13 h-16 mx-auto mb-2" />
                           <h3 className="text-m font-semibold">{medal.topic}</h3>
                           <p className="text-gray-700 text-sm">Nivel: {medal.level}</p>
                           <p className="text-gray-700 text-sm">Puntuación: {medal.score}%</p>
@@ -152,8 +146,8 @@ function App() {
               </div>
             </div>
 
-              <div className="ml-16 max-w-sm mt-16 bg-[#C3FFEB] shadow-md rounded-3xl p-8">
-                <h2 className="text-xl mb-4 font-semibold">Habilidades</h2>
+              <div className="ml-16 max-w-sm  bg-[#f5f1ce] shadow-lg rounded-3xl p-8">
+                <h2 className="text-xl mt-4 mb-8 font-semibold">Habilidades</h2>
                 <Doughnut data={data} />
                 <div className="mt-4 space-y-4">
                   <div className='text-left'>
@@ -171,10 +165,26 @@ function App() {
                 </div>
               </div>
             </form>
+            <div className='block  bg-[#cee9f5] shadow-lg rounded-lg p-8 userCardTF  mx-auto mt-8 mb-8'>
+              <p className='text-left'><strong>Perfil profesional:</strong> {u.studies}</p>
+            </div>
+            <div className=' bg-[#cee9f5] shadow-lg rounded-lg p-8 userCardTF  mx-auto'>
+              <p className='text-left'><strong>Experiencia laboral:</strong> {u.experience}</p>
+              <div className='block lg:flex lg:justify-between'>
+                <div className='flex'>
+                  <img src='https://avatars.githubusercontent.com/u/25259582?v=4' className='w-28 mt-4'/>
+                  <p className='mt-4 ml-8'><strong>6 meses</strong> trabajando en TIBI4 como diseñador gráfico y programador front-end</p>
+                </div>
+                <div className='mt-auto'>
+                    <button className='bg-blue-500 text-white py-2 px-4 rounded-full mt-4 hover:bg-indigo-500  transition ease-in-out delay-100'>Agregar CV</button>
+                </div>
+              </div>
+            </div>
+
           </div>
         ))
       }
-      <div className='block rounded-3xl  userCardTF  mx-auto lg:flex'>
+      <div className='block rounded-3xl  userCardTF  mx-auto lg:flex m-4'>
         <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6  mt-10'>
           {
             company.map((comp, index) => (
