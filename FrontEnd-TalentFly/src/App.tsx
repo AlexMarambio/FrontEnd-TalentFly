@@ -30,31 +30,31 @@ function App() {
 
   const [usermedal, setUserMedal] = useState([
     {
-      medal: "https://static.vecteezy.com/system/resources/thumbnails/021/979/332/small/gold-medal-with-red-ribbon-in-flat-style-free-png.png",
+      logo: "https://images.freeimages.com/fic/images/icons/2794/metro_ui/512/excel_2013.png?fmt=webp&h=350",
       topic: "Excel",
       level: "Middle",
       score: 70
     },
     {
-      medal: "https://static.vecteezy.com/system/resources/thumbnails/021/979/332/small/gold-medal-with-red-ribbon-in-flat-style-free-png.png",
+      logo: "https://cdn.icon-icons.com/icons2/1495/PNG/512/python_103279.png",
       topic: "Python",
       level: "Basic",
       score: 80
     },
     {
-      medal: "https://static.vecteezy.com/system/resources/thumbnails/021/979/332/small/gold-medal-with-red-ribbon-in-flat-style-free-png.png",
+      logo: "https://static-00.iconduck.com/assets.00/typescript-icon-icon-512x512-yh0yu3ta.png",
       topic: "Typescript",
       level: "Middle",
       score: 70
     },
     {
-      medal: "https://static.vecteezy.com/system/resources/thumbnails/021/979/332/small/gold-medal-with-red-ribbon-in-flat-style-free-png.png",
+      logo: "https://miro.medium.com/v2/resize:fit:700/0*sZ1IzKNMKqOSbwHU.jpg",
       topic: "c++",
       level: "Senior",
       score: 100
     },
     {
-      medal: "https://static.vecteezy.com/system/resources/thumbnails/021/979/332/small/gold-medal-with-red-ribbon-in-flat-style-free-png.png",
+      logo: "https://www.muylinux.com/wp-content/uploads/2022/05/DockerDesktop.png",
       topic: "Docker",
       level: "Junior",
       score: 40
@@ -120,7 +120,7 @@ function App() {
           <div key={u.nick} className="text-center">
             <h1 className='text-5xl text-purple-700 mb-6 font-bold'>Bienvenido {u.nick}</h1>
             <form className='block  rounded-3xl userCardTF  mx-auto lg:flex'>
-            <div className='relative bg-[#CEE9F5] shadow-md rounded-3xl overflow-hidden'>
+            <div className='relative bg-[#CEE9F5] shadow-lg rounded-3xl overflow-hidden border-2'>
               <div>
                 <img src="https://img.freepik.com/vector-gratis/fondo-banner-onda-azul-que-fluye-moderno_1035-19862.jpg" className='absolute top-0 left-0 w-full object-cover z-0 '/>
               </div>
@@ -132,14 +132,15 @@ function App() {
                 <p className='text-left'><strong>Experiencia laboral:</strong> {u.experience}</p>
                 <p className='text-left'>{u.description}</p>
                 <div className='flex justify-end'>
-                  <button className='bg-yellow-600 text-white py-2 px-4 rounded-full mt-4'>Agregar CV</button>
+                  <button className='bg-blue-500 text-white py-2 px-4 rounded-full mt-4 hover:bg-indigo-500  transition ease-in-out delay-100'>Agregar CV</button>
                 </div>
                 <div className='bg-[#C6D7E8] rounded-2xl p-4 mt-7'>
                   <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
                     {
                       usermedal.map((medal, index) => (
                         <ul key={index} className="">
-                          <img src={medal.medal} alt="Medal" className="w-13 h-16 mx-auto mb-2" />
+                          <img src="https://static.vecteezy.com/system/resources/thumbnails/021/979/332/small/gold-medal-with-red-ribbon-in-flat-style-free-png.png" alt="Medal" className="w-13 h-16 mx-auto mb-2" />
+                          <img src={medal.logo} alt='logo' className='absolute z-10 rounded-full w-9 h-9 mx-auto mb-2 -translate-y-16 translate-x-36'/>
                           <h3 className="text-m font-semibold">{medal.topic}</h3>
                           <p className="text-gray-700 text-sm">Nivel: {medal.level}</p>
                           <p className="text-gray-700 text-sm">Puntuación: {medal.score}%</p>
@@ -173,7 +174,7 @@ function App() {
           </div>
         ))
       }
-      <div className='block  p-8 rounded-3xl  userCardTF  mx-auto lg:flex'>
+      <div className='block rounded-3xl  userCardTF  mx-auto lg:flex'>
         <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6  mt-10'>
           {
             company.map((comp, index) => (
@@ -181,7 +182,7 @@ function App() {
                 <h2 className="text-2xl font-bold">{comp.comapanyName}</h2>
                 <p className="text-gray-700">{comp.slogan}</p>
                 <p className="text-gray-700">Looking for: {comp.percentage}% {comp.quizLevel}</p>
-                <button className='bg-purple-700 text-white py-2 px-4 rounded-full mt-4'>Postular</button>
+                <button className='bg-[#7a69de] text-white py-2 px-4 rounded-full mt-4 hover:bg-[#645FCB]  transition ease-in-out delay-100 hover:scale-110 duration-150'>Postular</button>
               </form>
             ))
           }
