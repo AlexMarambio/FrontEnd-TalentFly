@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "create-react-app": "^5.0.1",
-    "yup": "^1.4.0"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.4.4"
-  }
-}
