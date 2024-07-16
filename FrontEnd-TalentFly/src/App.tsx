@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useState, useEffect } from 'react';
 import Question from './components/Questions';
 import questionsData from './data.json';
