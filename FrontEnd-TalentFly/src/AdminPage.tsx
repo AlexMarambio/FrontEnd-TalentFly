@@ -1,5 +1,4 @@
 import React from 'react';
-import profilePicture from './assets/WhatsApp Image 2023-06-30 at 22.55.24.jpeg'
 
 interface User {
   name: string;
@@ -36,38 +35,44 @@ const AdminPage: React.FC = () => {
   const users: User[] = [
     {
       name: 'Alex Marambio',
-      profilePicture: 'https://via.placeholder.com/150',
-      course: 'Curso de Excel',
-      percentage: 60,
+      profilePicture: 'https://i.pravatar.cc/150?u=laexmarambio',
+      course: 'Test de Excel',
+      percentage: 90,
+    },
+    {
+      name: 'Alex Marambio',
+      profilePicture: 'https://i.pravatar.cc/150?u=laexmarambio',
+      course: 'Test de C++',
+      percentage: 90,
     },
     {
       name: 'Diego Pérez',
-      profilePicture: 'https://via.placeholder.com/150',
-      course: 'Curso de LinkedIn',
-      percentage: 70,
+      profilePicture: 'https://i.pravatar.cc/150?u=Diegoperez',
+      course: 'Test de LinkedIn',
+      percentage: 90,
     },
     {
       name: 'Aaron Pozas',
-      profilePicture: 'https://via.placeholder.com/150',
-      course: 'Curso de Python',
+      profilePicture: 'https://i.pravatar.cc/150?u=Aaronpozas',
+      course: 'Test de Python',
       percentage: 80,
     },
     {
         name: 'Tomas Roldan',
-        profilePicture: 'https://via.placeholder.com/150',
-        course: 'Curso de Python',
+        profilePicture: 'https://i.pravatar.cc/150?u=Tomasroldan',
+        course: 'Test de Python',
         percentage: 70,
     },
     {
         name: 'Constanza Rain',
-        profilePicture: 'https://via.placeholder.com/150',
-        course: 'Curso de C++',
+        profilePicture: 'https://i.pravatar.cc/150?u=Constanzarain',
+        course: 'Test de C++',
         percentage: 40,
     },
     {
         name: 'Diego Munoz',
-        profilePicture: profilePicture,
-        course: 'Curso de Brawl Stars',
+        profilePicture: 'https://i.pravatar.cc/150?u=DiegoMunoz',
+        course: 'Test de Brawl Stars',
         percentage: 100,
     },
     // Más usuarios...
@@ -92,27 +97,47 @@ const AdminPage: React.FC = () => {
 
   const groupedAndSortedUsers = groupAndSortUsers(users);
 
+  // Función para obtener clases de color basadas en el Test
+  const getCourseColorClass = (course: string) => {
+    switch (course) {
+      case 'Test de Excel':
+        return 'bg-green-100';
+      case 'Test de LinkedIn':
+        return 'bg-blue-100';
+      case 'Test de Python':
+        return 'bg-yellow-100';
+      case 'Test de C++':
+        return 'bg-purple-100';
+      case 'Test de Brawl Stars':
+        return 'bg-red-100';
+      default:
+        return 'bg-gray-100';
+    }
+  };
+
   return (
-    
-    <div className="admin-page p-4">
-        <nav className="relative h-28">
-            <video autoPlay muted loop className="absolute w-full h-full object-cover">
+    <div className="admin-page">
+      <nav className="relative h-28 bg-gray-900 bg-opacity-50">
+        <video autoPlay muted loop className="absolute w-full h-full object-cover">
           <source src="https://talenfly.com/wp-content/uploads/2021/12/pexels-rostislav-uzunov-9150545.mp4" type="video/mp4" />
-            </video>
+        </video>
         <div className="relative flex items-center justify-center h-full">
           <img src="https://talenfly.com/wp-content/uploads/2021/12/Logo_Talenfly-300x83.png" alt="Logo" className="h-16" />
         </div>
-        </nav>
+      </nav>
 
-      <h1 className="text-2xl font-bold my-8 text-center">Lista de porcentajes</h1>
+      <h1 className="text-2xl font-bold my-4 text-center">Lista de porcentajes</h1>
+      <div className='p-4'>
       {Object.keys(groupedAndSortedUsers).map(course => (
-        <div key={course} className="mb-6">
+        <div key={course} className={`mb-6 p-4 rounded ${getCourseColorClass(course)}`}>
           <h2 className="text-xl font-semibold mb-2">{course}</h2>
           {groupedAndSortedUsers[course].map((user, index) => (
             <UserCard key={index} user={user} />
           ))}
         </div>
       ))}
+      </div>
+
     </div>
   );
 };
