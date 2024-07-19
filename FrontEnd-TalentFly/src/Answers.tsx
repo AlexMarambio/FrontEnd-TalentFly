@@ -52,11 +52,3 @@ const Answers: React.FC<ResultPageProps> = ({answers, questions, finalScore, han
 };
 
 export default Answers;
-
-/*
-<img
-          src={photoUrl}
-          alt="User"
-          className="w-32 h-32 rounded-full mx-auto mb-4"
-        />
-*/

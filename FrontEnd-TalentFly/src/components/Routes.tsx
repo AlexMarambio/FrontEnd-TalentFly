@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import AdminPage from '../AdminPage'
+import AdminPage from '../Reclutator'
 import App from '../App'
 
 const Routes: React.FC = () => {
