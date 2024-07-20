@@ -1,3 +1,15 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&display=swap");
+
+.userCardTF
+{
+    max-width: 1170px;
+}
+
+.fiftypx
+{
+    max-width: 50px;
+}
