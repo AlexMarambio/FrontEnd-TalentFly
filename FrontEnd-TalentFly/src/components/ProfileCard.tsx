@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 interface Skill {
   name: string;
@@ -13,13 +13,27 @@ interface ProfileCardProps {
   validations: number;
   ranking: number;
   imgSrc: string;
+  highlight: boolean;
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ name, role, level, skills, validations, ranking, imgSrc }) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({ name, role, level, skills, validations, ranking, imgSrc, highlight }) => {
+
+  const [isHighlighted, setIsHighlighted] = useState(highlight);
+
+  useEffect(() => {
+    if (highlight) {
+      setIsHighlighted(true);
+      setTimeout(() => setIsHighlighted(false), 650); // Highlight duration 2 seconds
+    }
+  }, [highlight]);
+
   return (
 
-    <div className="bg-gray-100 shadow-lg rounded-3xl p-4 ">
+    <div className={`bg-gray-100 shadow-lg rounded-3xl p-4 w-80 flex-shrink-0 transition-transform duration-500 ${isHighlighted ? 'transform scale-105 bg-white' : ''}`}>
+      <div className='relative'>
         <img src={imgSrc} alt={name} className="w-20 h-32 rounded-3xl absolute" />
+      </div>
+        
       <div className="block items-center bg-white p-4 rounded-2xl mt-6 ">
     <div className=''>
            <div className="ml-4 translate-x-16">
@@ -35,7 +49,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, role, level, skills, va
         
     </div>
       
-      <div className="mt-4 bg-white p-4 rounded-2xl shadow-md">
+      <div className="mt-3 bg-white p-4 rounded-2xl shadow-md">
         {skills.map((skill, index) => (
           <div key={index} className="mb-2">
             <div className="flex justify-between text-gray-700">
