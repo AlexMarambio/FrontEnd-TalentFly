@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-//import App from './App.tsx'  //principal
+import App from './App.tsx'  //principal
 import './index.css'
 import AdminPage from './Reclutator.tsx'  //lista de aprovacion en vista de administrador
 
