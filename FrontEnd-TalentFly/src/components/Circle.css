@@ -1,0 +1,36 @@
+.circle {
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* Asegura que el círculo esté sobre otros elementos si es necesario */
+}
+
+.circular-progress {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(#9400d3 0deg, #e3e3e3 0deg);
+    z-index: 0; 
+}
+
+.progress-value {
+    position: relative;
+    font-size: 40px;
+    font-weight: 500;
+    color: darkviolet;
+    z-index: 1;
+}
+
+.text {
+    position: absolute;
+    bottom: 0px; 
+    font-size: 28px;
+    font-weight: 500;
+    color: #000000;
+    z-index: 1; 
+}
