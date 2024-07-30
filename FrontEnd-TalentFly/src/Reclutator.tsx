@@ -88,9 +88,9 @@ const Reclutator: React.FC = () => {
       role: 'UX/UI Designer',
       level: 'Nivel básico',
       skills: [
-        { name: 'Pornhub', percentage: 100 },
+        { name: 'React', percentage: 100 },
         { name: 'Angular', percentage: 60 },
-        { name: 'Psicologia Anal', percentage: 75 },
+        { name: 'Python', percentage: 75 },
       ],
       validations: 300,
       ranking: 1,
@@ -98,84 +98,79 @@ const Reclutator: React.FC = () => {
     },
   ];
 
-const [highlightedProfile, setHighlightedProfile] = useState<string | null>(null);
-const profileRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const [highlightedProfile, setHighlightedProfile] = useState<string | null>(null);
+  const profileRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-//const [selectedSkill, setSelectedSkill] = useState<string>('');
+  const handleFilter = (skillName: string) => {
+    const profile = profiles.find(profile => profile.skills.some(skill => skill.name === skillName));
+    if (profile) {
+      const profileId = `${profile.name}-${skillName}`;
+      setHighlightedProfile(profileId);
+      profileRefs.current[profileId]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
 
-const handleFilter = (skillName: string) => {
-  const profile = profiles.find(profile => profile.skills.some(skill => skill.name === skillName));
-  if (profile) {
-    const profileId = `${profile.name}-${skillName}`;
-    setHighlightedProfile(profileId);
-    profileRefs.current[profileId]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-};
+  const getProfileId = (profileName: string, skillName: string) => {
+    return `${profileName}-${skillName}`;
+  };
 
-const getProfileId = (profileName: string, skillName: string) => {
-  return `${profileName}-${skillName}`;
-};
-
+  // Ordena perfiles por ranking en orden descendente
+  const sortedProfiles = (skillName: string) => 
+    profiles
+      .filter(profile => profile.skills.some(skill => skill.name === skillName))
+      .sort((a, b) => b.ranking - a.ranking);
 
   return (
-
     <div> {/* Div principal */}
-        <nav className="relative h-28"> {/* Adjusted height to make the navbar bigger */}
+      <nav className="relative h-28"> {/* Ajustar altura para hacer la barra de navegación más grande */}
         <video autoPlay muted loop className="absolute w-full h-full object-cover">
           <source src="https://talenfly.com/wp-content/uploads/2021/12/pexels-rostislav-uzunov-9150545.mp4" type="video/mp4" />
         </video>
         <div className="relative flex items-center justify-center h-full">
-          <img src="https://talenfly.com/wp-content/uploads/2021/12/Logo_Talenfly-300x83.png" alt="Logo" className="h-16" /> {/* Adjusted size of the logo */}
+          <img src="https://talenfly.com/wp-content/uploads/2021/12/Logo_Talenfly-300x83.png" alt="Logo" className="h-16" /> {/* Ajustar tamaño del logo */}
         </div>
       </nav>
 
       <div className='min-h-screen bg-purple-100 p-8'>  {/* Div para encajar las tarjetas de usuarios */}
-
-          <h1 className='text-3xl font-bold text-center mb-8'>
-            Candidatos a reclutamiento
+        <h1 className='text-3xl font-bold text-center mb-8'>
+          Candidatos a reclutamiento
+        </h1>
+        <div className='flex justify-center mb-8'>   {/* Barra de búsqueda */}
+          <h1 className='font-bold'>  
+            Filtrar por:
           </h1>
-            <div className='flex justify-center mb-8'>   {/* Barra de busqueda */}
 
-              <h1 className='font-bold'>  
-                Filtrar por:
-              </h1>
+          <button onClick={() => handleFilter('React')}
+            className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
+            React
+          </button>
+          
+          <button onClick={() => handleFilter('SEM')}
+          className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
+          SEM
+          </button>
 
-              <button onClick={() => handleFilter('React')}
-                className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
-              React
-              </button>
-              
-              <button onClick={() => handleFilter('SEM')}
-              className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
-              SEM
-              </button>
+          <button onClick={() => handleFilter('Angular')}
+          className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
+          Angular
+          </button>
 
-              <button onClick={() => handleFilter('Angular')}
-              className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
-              Angular
-              </button>
+          <button onClick={() => handleFilter('MongoDB')}
+          className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
+          MongoDB
+          </button>
 
-              <button onClick={() => handleFilter('MongoDB')}
-              className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
-              MongoDB
-              </button>
+          <button onClick={() => setHighlightedProfile(null)}
+          className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
+          Ver Otros
+          </button>
+        </div>
 
-              <button onClick={() => setHighlightedProfile(null)}
-              className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>
-              Ver Todos
-              </button>
-
-            </div>
-
-         {/* Salseo */}
+        {/* Sección para cada habilidad */}
         <div className='max-w-6xl mx-auto'> 
-
           <h2 className='text-2xl font-semibold'> React </h2>
-
           <div className="flex overflow-x-auto space-x-4 pb-4">
-          {profiles
-            .filter(profile => profile.skills.some(skill => skill.name === 'React'))
-            .map((profile, index) => (
+            {sortedProfiles('React').map((profile, index) => (
               <div
                 key={index}
                 ref={el => profileRefs.current[getProfileId(profile.name, 'React')] = el}
@@ -183,14 +178,11 @@ const getProfileId = (profileName: string, skillName: string) => {
                 <ProfileCard {...profile} highlight={highlightedProfile === getProfileId(profile.name, 'React')} />
               </div>
             ))}
-        </div>
+          </div>
           
           <h2 className='text-2xl font-semibold'> Angular </h2>
-
           <div className="flex overflow-x-auto space-x-4 pb-4">
-          {profiles
-            .filter(profile => profile.skills.some(skill => skill.name === 'Angular'))
-            .map((profile, index) => (
+            {sortedProfiles('Angular').map((profile, index) => (
               <div
                 key={index}
                 ref={el => profileRefs.current[getProfileId(profile.name, 'Angular')] = el}
@@ -198,30 +190,27 @@ const getProfileId = (profileName: string, skillName: string) => {
                 <ProfileCard {...profile} highlight={highlightedProfile === getProfileId(profile.name, 'Angular')} />
               </div>
             ))}
-        </div>
+          </div>
 
           <h2 className='text-2xl font-semibold'> MongoDB </h2>
-
           <div className="flex overflow-x-auto space-x-4 pb-4">
-            {profiles
-              .filter(profile => profile.skills.some(skill => skill.name === 'MongoDB'))
-              .map((profile, index) => (
-                <div
-                  key={index}
-                  ref={el => profileRefs.current[getProfileId(profile.name, 'MongoDB')] = el}
-                >
-                  <ProfileCard {...profile} highlight={highlightedProfile === getProfileId(profile.name, 'MongoDB')} />
-                </div>
-              ))}
-        </div>
+            {sortedProfiles('MongoDB').map((profile, index) => (
+              <div
+                key={index}
+                ref={el => profileRefs.current[getProfileId(profile.name, 'MongoDB')] = el}
+              >
+                <ProfileCard {...profile} highlight={highlightedProfile === getProfileId(profile.name, 'MongoDB')} />
+              </div>
+            ))}
+          </div>
 
           <h2 className='text-2xl font-semibold'> Otros </h2>
-
           <div className="flex overflow-x-auto space-x-4 pb-4">
             {profiles
               .filter(profile => 
                 !profile.skills.some(skill => 
                   ['React', 'Angular', 'MongoDB'].includes(skill.name)))
+              .sort((a, b) => b.ranking - a.ranking) // Ordenar por ranking
               .map((profile, index) => (
                 <div
                   key={index}
@@ -229,16 +218,11 @@ const getProfileId = (profileName: string, skillName: string) => {
                 >
                   <ProfileCard {...profile} highlight={highlightedProfile === getProfileId(profile.name, 'Otros')} />
                 </div>
-              ))
-            }
+              ))}
           </div>
-
-        </div>  {/* Fin salseo */}
-
+        </div>  {/* Fin sección */}
       </div>
-
     </div>
-
   );
 };
 
