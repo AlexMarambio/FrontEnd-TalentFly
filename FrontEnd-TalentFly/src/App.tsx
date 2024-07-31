@@ -91,7 +91,7 @@ const App: React.FC = () => {
       <div className="progress-bar-container">
         <div className="w-full bg-gray-300 rounded-full h-2 shadow-inner">
           <div
-            className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full transition-width duration-500 ease-in-out"
+            className="bg-black h-2 rounded-full transition-width duration-500 ease-in-out"
             style={{
               width: `${showResults ? 100 : (currentQuestionIndex / questions.length) * 100}%`
             }}
