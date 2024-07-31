@@ -89,7 +89,14 @@ const App: React.FC = () => {
       </nav>
 
       <div className="progress-bar-container">
-        <div className="progress-bar"></div>
+        <div className="w-full bg-gray-300 rounded-full h-2 shadow-inner">
+          <div
+            className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full transition-width duration-500 ease-in-out"
+            style={{
+              width: `${showResults ? 100 : (currentQuestionIndex / questions.length) * 100}%`
+            }}
+          ></div>
+        </div>
       </div>
 
       <div className="flex-grow flex flex-col justify-center items-center">

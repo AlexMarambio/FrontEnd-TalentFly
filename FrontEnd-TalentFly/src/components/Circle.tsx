@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import './Circle.css';
+import React, { useState, useEffect } from 'react';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 interface CircleProps {
   score: number;
@@ -8,29 +9,43 @@ interface CircleProps {
 const Circle: React.FC<CircleProps> = ({ score }) => {
   const [progress, setProgress] = useState(0);
 
+  const getColor = (score: number) => {
+    if (score <= 40) {
+      return '#FF0000'; // Rojo
+    } else if (score <= 70) {
+      return '#FFA500'; // Naranja
+    } else {
+      return '#008000'; // Verde
+    }
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev < score) {
-          return prev + 1;
+    const intervalId = setInterval(() => {
+      setProgress((prevProgress) => {
+        if (prevProgress >= score) {
+          clearInterval(intervalId);
+          return score;
         }
-        clearInterval(interval);
-        return prev;
+        return prevProgress + 1; // Ajustar el incremento según sea necesario
       });
-    }, 10);
-    return () => clearInterval(interval);
+    }, 20); // Ajustar el intervalo
+  
+    return () => clearInterval(intervalId);
   }, [score]);
 
   return (
-    <div className='circle'>
-      <div className='circular-progress' style={{ background: `conic-gradient(#9400d3 ${progress * 3.6}deg, #e3e3e3 ${progress * 3.6}deg)` }}>
-        <span className='progress-value'>
-          {progress}%
-        </span>
-      </div>
-      <span className='text'>
-        Resultado del cuestionario
-      </span>
+    <div style={{ width: '200px', height: '200px' }}>
+      <CircularProgressbar
+        value={progress}
+        text={`${progress}%`}
+        styles={buildStyles({
+          textColor: getColor(progress),
+          pathColor: getColor(progress),
+          trailColor: '#d6d6d6',
+          textSize: '20px'
+        })}
+      />
+      <p style={{ textAlign: 'center', marginTop: '20px' , }}>Resultado obtenido</p>
     </div>
   );
 };
