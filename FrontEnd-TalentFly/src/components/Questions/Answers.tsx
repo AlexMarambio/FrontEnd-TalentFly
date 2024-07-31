@@ -1,52 +1,51 @@
-import React from 'react';
-import './PercentageCircle.css';
+import React, { useState, useEffect } from 'react';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
-interface Question {
-  Q: string;
-  Choices: { value: string; label: string }[];
-  Correct: string;
+interface CircleProps {
+  score: number;
 }
 
-interface ResultPageProps {
-  //userName: string;
-  //subject: string;
-  //photoUrl: string;
-  answers: { [key: string]: string };
-  questions: Question[];
-  finalScore?: number; //puntaje final
-  handleRestart?: () => void; // para reiniciar el cuestionario
-}
+const Answers: React.FC<CircleProps> = ({ score }) => {
+  const [progress, setProgress] = useState(0);
 
-const Answers: React.FC<ResultPageProps> = ({answers, questions, finalScore, handleRestart }) => {
-  const correctAnswers = questions.filter(q => answers[q.Q] === q.Correct).length;
-  const totalQuestions = questions.length;
-  const score = (correctAnswers / totalQuestions) * 100;
-
-  const getColor = (percentage: number) => {
-    if (percentage <= 30) return 'red';
-    if (percentage <= 65) return 'orange';
-    return 'green';
+  const getColor = (score: number) => {
+    if (score <= 40) {
+      return '#FF0000'; // Rojo
+    } else if (score <= 70) {
+      return '#FFA500'; // Naranja
+    } else {
+      return '#008000'; // Verde
+    }
   };
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setProgress((prevProgress) => {
+        if (prevProgress >= score) {
+          clearInterval(intervalId);
+          return score;
+        }
+        return prevProgress + 1; // Ajustar el incremento según sea necesario
+      });
+    }, 20); // Ajustar el intervalo
+  
+    return () => clearInterval(intervalId);
+  }, [score]);
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen p-4">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full text-center">
-
-
-        <h1 className="text-2xl font-bold mb-2">Nombre del usuario</h1>
-        <p className="text-gray-600 mb-4">Curso</p>
-        <div className="percentage-circle" style={{ borderColor: getColor(score) }}>
-          <span>{Math.round(score)}%</span>
-        </div>
-        {finalScore !== undefined && (
-          <p className="text-lg mt-4">Puntaje Final: {Math.round(finalScore)}</p>
-        )}
-        {handleRestart && (
-          <button onClick={handleRestart} className="mt-4 bg-[#8877e4] text-white py-2 px-4 rounded-md">
-            Reiniciar
-          </button>
-        )}
-      </div>
+    <div style={{ width: '200px', height: '200px' }}>
+      <CircularProgressbar
+        value={progress}
+        text={`${progress}%`}
+        styles={buildStyles({
+          textColor: getColor(progress),
+          pathColor: getColor(progress),
+          trailColor: '#d6d6d6',
+          textSize: '20px'
+        })}
+      />
+      <p style={{ textAlign: 'center', marginTop: '20px' , }}>Resultado obtenido</p>
     </div>
   );
 };

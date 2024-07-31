@@ -22,7 +22,7 @@ function App() {
           <Route path="/profile2" element={<ProfilePostulante />} />
           <Route path="/profile2_edit" element={<ProfilePostulante_edit />} />
           <Route path="/Quiz" element={<Questions />} />
-
+          
 
 
         </Routes>
