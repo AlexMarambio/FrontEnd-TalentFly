@@ -7,7 +7,7 @@ interface Props {}
 const Homepage = (props: Props) => {
   return (
     <div>
-      <NavbarHome />
+        <NavbarHome />
         <Hero />
     </div>
   )

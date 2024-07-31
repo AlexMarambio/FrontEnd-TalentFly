@@ -1,5 +1,5 @@
 import React from 'react';
-import PostulantCard from '../Cards/PostulantCards/PostulantCards';
+import ProfileCard from './PostulantCards';
 
 interface Skill {
   name: string;
@@ -16,15 +16,7 @@ interface Profile {
   imgSrc: string;
 }
 
-const CompanyProfile: React.FC = () => {
-  // Aquí podrías definir la información de la empresa, como el nombre y la descripción.
-  const companyInfo = {
-    name: 'Tech Innovators Ltd.',
-    description: 'Tech Innovators Ltd. is a leading tech company specializing in innovative software solutions and cutting-edge technologies. We are always on the lookout for top talent to join our dynamic team.',
-    imgSrc: 'https://i.pravatar.cc/150?u=companylogo'
-  };
-
-  // Lista de postulantes para mostrar en el perfil de la empresa
+const Reclutator: React.FC = () => {
   const profiles: Profile[] = [
     {
       name: 'Colomba Jara',
@@ -66,7 +58,7 @@ const CompanyProfile: React.FC = () => {
       imgSrc: 'https://i.pravatar.cc/150?u=Diegomunoz'
     },
     {
-      name: 'Aarón Pozas',
+      name: 'Aarón pozas',
       role: 'Front Stack Specialist',
       level: 'Nivel básico',
       skills: [
@@ -94,26 +86,16 @@ const CompanyProfile: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
-        <div className="flex items-center">
-          <img src={companyInfo.imgSrc} alt={companyInfo.name} className="w-32 h-32 rounded-full mr-4" />
-          <div>
-            <h1 className="text-3xl font-bold">{companyInfo.name}</h1>
-            <p className="text-gray-600 mt-2">{companyInfo.description}</p>
-          </div>
-        </div>
-        <div className="mt-8">
-          <h2 className="text-2xl font-semibold mb-4">Postulantes Destacados</h2>
-          <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
-            {profiles.map((profile, index) => (
-              <PostulantCard key={index} {...profile} />
-            ))}
-          </div>
+    <div>
+      <div className="min-h-screen bg-purple-100 p-8 ">
+        <div className="max-w-4xl mx-auto grid gap-8 grid-cols-1 md:grid-cols-2">
+          {profiles.map((profile, index) => (
+            <ProfileCard key={index} {...profile} />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default CompanyProfile;
+export default Reclutator;

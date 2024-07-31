@@ -4,8 +4,8 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Homepage from './pages/Homepage/Homepage';
 import Login from './pages/LoginPage/LoginPage';
 import Register from './pages/RegPage/RegPage';
-import ProfileReclutador from './components/Profile/ProfileCompany';
-import ProfilePostulante from './components/Profile/ProfilePostulant';
+import ProfileReclutador from './pages/Profiles/Recruiter';
+import ProfilePostulante from './pages/Profiles/Postulant';
 import Questions from './components/Questions/Questions'; 
 
 function App() {
