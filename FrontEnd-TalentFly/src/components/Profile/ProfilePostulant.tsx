@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
 import NavbarPostulant from '../Navbar/NavbarPostulant';
+import { Link } from "react-router-dom";
 
 Chart.register(ArcElement);
 
@@ -145,6 +146,10 @@ function ProfilePostulant() {
                     }
                   </ul>
                 </div>
+                <button className='bg-[#7a69de]  text-white py-2 px-4 rounded-full mt-4 hover:bg-[#645FCB]  transition ease-in-out delay-100 hover:scale-110 duration-150'>
+                  <Link to="/profile2_edit"> ✏ </Link>
+                  
+                </button>
               </div>
             </div>
 
