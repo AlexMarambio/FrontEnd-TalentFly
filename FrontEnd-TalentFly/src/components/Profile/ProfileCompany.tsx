@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import PostulantCard from '../Cards/PostulantCards/PostulantCards';
+import JobOfferForm from '../Cards/PostulantCards/JobOfferForm';
 
 interface Skill {
   name: string;
@@ -14,6 +15,16 @@ interface Profile {
   validations: number;
   ranking: number;
   imgSrc: string;
+}
+
+interface JobOffer {
+  id: number;
+  title: string;
+  salary: string;
+  type: 'Full-time' | 'Part-time';
+  remote: boolean;
+  skillsRequired: string[];
+  description: string;
 }
 
 const CompanyProfile: React.FC = () => {
@@ -91,6 +102,9 @@ const CompanyProfile: React.FC = () => {
     },
   ];
 
+  const [jobOffers, setJobOffers] = useState<JobOffer[]>([]);
+  const [editingJobOffer, setEditingJobOffer] = useState<JobOffer | null>(null);
+
   const profileRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const handleFilter = (skillName: string) => {
@@ -105,9 +119,23 @@ const CompanyProfile: React.FC = () => {
     return `${profileName}-${skillName}`;
   };
 
+  const handleAddJobOffer = (jobOffer: JobOffer) => {
+    if (editingJobOffer) {
+      setJobOffers(jobOffers.map(offer => offer.id === jobOffer.id ? jobOffer : offer));
+    } else {
+      setJobOffers([...jobOffers, jobOffer]);
+    }
+    setEditingJobOffer(null);
+  };
+
+  const handleEditJobOffer = (jobOffer: JobOffer) => {
+    setEditingJobOffer(jobOffer);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 px-32 py-8">
       <div className=" mx-auto bg-white p-16 rounded-lg shadow-md">
+        {/* Información de la empresa */}
         <div className="block text-center">
           <img src={companyInfo.imgSrc} alt={companyInfo.name} className="w-32 h-32 mx-auto rounded-16" />
           <div>
@@ -115,6 +143,26 @@ const CompanyProfile: React.FC = () => {
             <p className="text-gray-600 mt-2">{companyInfo.description}</p>
           </div>
         </div>
+
+        {/* Formulario de ofertas laborales */}
+        <JobOfferForm onSubmit={handleAddJobOffer} initialData={editingJobOffer} />
+
+        {/* Listado de ofertas laborales */}
+        <div className="mt-8">
+          <h2 className="text-2xl font-semibold mb-4">Ofertas Laborales</h2>
+          <ul>
+            {jobOffers.map((offer) => (
+              <li key={offer.id} className="p-4 bg-blue-100 shadow-lg rounded-lg mb-4">
+                <h3 className="text-lg font-semibold">{offer.title}</h3>
+                <p className="text-gray-600">{offer.description}</p>
+                <p className="text-sm text-gray-500">{offer.remote ? 'Remoto' : 'Presencial'} - {offer.type}</p>
+                <button onClick={() => handleEditJobOffer(offer)} className="text-blue-500 mt-2">Editar</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Postulantes destacados */}
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-4">Postulantes Destacados</h2>
           <div className="flex justify-center mb-8">
