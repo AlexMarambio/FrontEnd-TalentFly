@@ -196,7 +196,7 @@ const CompanyProfile: React.FC = () => {
 
         {/* Listado de ofertas laborales */}
         <div className="mt-8">
-          <h2 className="text-2xl font-semibold mb-4">Ofertas Laborales</h2>
+          <h2 className="text-2xl font-semibold mb-4">Tus Ofertas Laborales</h2>
           <ul>
             {jobOffers.map((offer) => (
               <li key={offer.id} className="p-4 bg-blue-100 shadow-lg rounded-lg mb-4">
