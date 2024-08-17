@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
 import NavbarPostulant from '../Navbar/NavbarPostulant';
-import { Link } from "react-router-dom";
 
 Chart.register(ArcElement);
 
@@ -23,7 +22,7 @@ function ProfilePostulant() {
     experience: "1 año"
   });
 
-  const [company, setCompany] = useState([
+  const [company] = useState([
     {
       comapanyName: "TalentFly",
       quizLevel: "Senior",
@@ -56,7 +55,7 @@ function ProfilePostulant() {
     }
   ]);
 
-  const [userMedal, setUserMedal] = useState([
+  const [userMedal] = useState([
     {
       logo: "https://github.com/AlexMarambio/FrontEnd-TalentFly/blob/alex2.0/imagestalentflymedal/medalla-excel.png?raw=true",
       topic: "Excel",

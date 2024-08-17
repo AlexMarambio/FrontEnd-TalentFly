@@ -105,6 +105,10 @@ const CompanyProfile: React.FC = () => {
   const [jobOffers, setJobOffers] = useState<JobOffer[]>([]);
   const [editingJobOffer, setEditingJobOffer] = useState<JobOffer | null>(null);
 
+  const [experience, setExperience] = useState(50);
+  const [technicalSkills, setTechnicalSkills] = useState(50);
+  const [softSkills, setSoftSkills] = useState(50);
+
   const profileRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const handleFilter = (skillName: string) => {
@@ -145,11 +149,54 @@ const CompanyProfile: React.FC = () => {
         </div>
 
         {/* Formulario de ofertas laborales */}
-        <JobOfferForm onSubmit={handleAddJobOffer} initialData={editingJobOffer} />
+        <JobOfferForm onSubmit={handleAddJobOffer} initialData={editingJobOffer || undefined} />
+
+        {/* Controles de ajuste */}
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold mb-4">Ajustes de filtrado</h2>
+          <div className="space-y-4">
+            <div className="flex items-center">
+              <label className="w-48">Experiencia:</label>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={experience}
+                onChange={(e) => setExperience(Number(e.target.value))}
+                className="w-full accent-purple-500"
+              />
+              <span className="ml-4">{experience}%</span>
+            </div>
+            <div className="flex items-center">
+              <label className="w-48">Power Skills:</label>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={technicalSkills}
+                onChange={(e) => setTechnicalSkills(Number(e.target.value))}
+                className="w-full accent-purple-500"
+              />
+              <span className="ml-4">{technicalSkills}%</span>
+            </div>
+            <div className="flex items-center">
+              <label className="w-48">Habilidades Técnicas:</label>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={softSkills}
+                onChange={(e) => setSoftSkills(Number(e.target.value))}
+                className="w-full accent-purple-500"
+              />
+              <span className="ml-4">{softSkills}%</span>
+            </div>
+          </div>
+        </div>
 
         {/* Listado de ofertas laborales */}
         <div className="mt-8">
-          <h2 className="text-2xl font-semibold mb-4">Ofertas Laborales</h2>
+          <h2 className="text-2xl font-semibold mb-4">Tus Ofertas Laborales</h2>
           <ul>
             {jobOffers.map((offer) => (
               <li key={offer.id} className="p-4 bg-blue-100 shadow-lg rounded-lg mb-4">
@@ -167,10 +214,10 @@ const CompanyProfile: React.FC = () => {
           <h2 className="text-2xl font-semibold mb-4">Postulantes Destacados</h2>
           <div className="flex justify-center mb-8">
             <h1 className='font-bold'>Filtrar por:</h1>
-            <button onClick={() => handleFilter('React')} className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>React</button>
-            <button onClick={() => handleFilter('SEM')} className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>SEM</button>
-            <button onClick={() => handleFilter('Angular')} className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>Angular</button>
-            <button onClick={() => handleFilter('MongoDB')} className='bg-purple-500 text-white py-2 px-4 rounded-lg mx-2'>MongoDB</button>
+            <button onClick={() => handleFilter('React')} className='bg-gray-100 text-purple-500 px-4 rounded-md mx-2'>React</button>
+            <button onClick={() => handleFilter('SEM')} className='bg-gray-100 text-purple-500 px-4 rounded-md mx-2'>SEM</button>
+            <button onClick={() => handleFilter('Angular')} className='bg-gray-100 text-purple-500 px-4 rounded-md mx-2'>Angular</button>
+            <button onClick={() => handleFilter('MongoDB')} className='bg-gray-100 text-purple-500 px-4 rounded-md mx-2'>MongoDB</button>
           </div>
 
           <div className='max-w-6xl mx-auto'>

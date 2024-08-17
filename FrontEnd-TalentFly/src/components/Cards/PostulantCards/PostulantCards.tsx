@@ -15,7 +15,7 @@ interface ProfileCardProps {
   imgSrc: string;
 }
 
-const PostulantCard: React.FC<ProfileCardProps> = ({ name, role, level, skills, validations, ranking, imgSrc }) => {
+const PostulantCard: React.FC<ProfileCardProps> = ({ name, role, level, skills, imgSrc }) => {
   return (
 
     <div className="bg-[#f5f0f7] shadow-lg rounded-3xl p-4 ">

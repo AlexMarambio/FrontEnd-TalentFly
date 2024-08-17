@@ -6,7 +6,6 @@ import Login from './pages/LoginPage/LoginPage';
 import Register from './pages/RegPage/RegPage';
 import ProfileReclutador from './pages/Profiles/Recruiter';
 import ProfilePostulante from './pages/Profiles/Postulant';
-import ProfilePostulante_edit from './pages/Profiles/Postulant_edit';
 import Questions from './components/Questions/Questions'; 
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profile1" element={<ProfileReclutador />} />
           <Route path="/profile2" element={<ProfilePostulante />} />
-          <Route path="/profile2_edit" element={<ProfilePostulante_edit />} />
           <Route path="/Quiz" element={<Questions />} />
           
 
