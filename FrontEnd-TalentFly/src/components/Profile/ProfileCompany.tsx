@@ -149,7 +149,7 @@ const CompanyProfile: React.FC = () => {
         </div>
 
         {/* Formulario de ofertas laborales */}
-        <JobOfferForm onSubmit={handleAddJobOffer} initialData={editingJobOffer} />
+        <JobOfferForm onSubmit={handleAddJobOffer} initialData={editingJobOffer || undefined} />
 
         {/* Controles de ajuste */}
         <div className="mt-8">

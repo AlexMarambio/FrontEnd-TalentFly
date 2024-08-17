@@ -1,10 +1,8 @@
-import React from 'react'
+
 import Recruiter from '../../components/Profile/ProfileCompany'
 import NavbarCompany from '../../components/Navbar/NavbarCompany'
 
-interface Props {}
-
-const RecruiterPage = (props: Props) => {
+const RecruiterPage = () => {
   return (
     <div>
          <nav className="relative h-28">
