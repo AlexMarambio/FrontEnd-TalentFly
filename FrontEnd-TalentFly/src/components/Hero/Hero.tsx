@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import hero1 from "../../assets/home/hero1.png";
 import hero2 from "../../assets/home/hero2.png";
 import { Link } from "react-router-dom";
 
-interface Props {}
 
-const Hero = (props: Props) => {
+
+const Hero = () => {
   const [showHero2, setShowHero2] = useState(false);
 
   useEffect(() => {

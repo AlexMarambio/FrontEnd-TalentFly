@@ -1,9 +1,8 @@
-import React from 'react'
+
 import Postulants from '../../components/Profile/ProfilePostulant'
 
-interface Props {}
 
-const Postulant = (props: Props) => {
+const Postulant = () => {
   return (
     <div>
         <Postulants />

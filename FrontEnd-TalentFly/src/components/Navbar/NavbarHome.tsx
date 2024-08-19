@@ -1,10 +1,10 @@
-import React from "react";
+
 import logo from "../../assets/logos/logo2.png";
 import { Link } from "react-router-dom";
 
-interface Props {}
 
-const NavbarHome = (props: Props) => {
+
+const NavbarHome = () => {
   return (
     <nav className="relative container mx-auto p-6">
       <div className="flex items-center justify-between">

@@ -1,9 +1,9 @@
-import React from 'react'
+
 import Login from '../../components/Login/Login'
 
-interface Props {}
 
-const LoginPage = (props: Props) => {
+
+const LoginPage = () => {
   return (
     <div>
         <Login />
