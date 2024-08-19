@@ -3,7 +3,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
 const navigation = [
-  { name: 'Home', href: '#', current: true },
+  { name: 'Home', href: '/', current: true },
   { name: 'Postulaciones', href: '#', current: false },
   { name: 'Talleres', href: '#', current: false },
   { name: 'Quiz' ,href: '/ChooseQuiz', current: false },
