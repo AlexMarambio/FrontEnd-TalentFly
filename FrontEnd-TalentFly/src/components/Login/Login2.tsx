@@ -17,16 +17,15 @@ const Login2: React.FC<Props> = () => {
               <h1>Inicia Sesión</h1>
               <input className="bg-[#eee] border-none my-2 px-4 py-2 text-sm rounded-lg w-full outline-none" type="email" placeholder="Ingresa tu Email" />
               <input className="bg-[#eee] border-none my-2 px-4 py-2 text-sm rounded-lg w-full outline-none" type="password" placeholder="Ingresa tu Contraseña" />
-              <Link to="/" className="text-[#333] text-sm mt-3 mb-2">Ya tienes una Cuenta?</Link>
-              <button className="bg-[#512da8] text-white text-xs px-11 py-2 border border-transparent rounded-lg font-semibold tracking-wide uppercase mt-2 cursor-pointer" id="login">Sign In</button>
+              <Link to="/register" className="text-[#333] text-sm mt-3 mb-2">¿No tienes una Cuenta?</Link>
+              <Link to="/profile2" className="bg-[#512da8] text-white text-xs px-11 py-2 border border-transparent rounded-lg font-semibold tracking-wide uppercase mt-2 cursor-pointer" id="login">Iniciar Sesión</Link>
             </form>
           </div>
           <div className="toggle-container absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-all ease-in-out duration-[600ms] rounded-[150px_0_0_100px] z-[1000]">
             <div className="toggle bg-[#512da8] h-full bg-gradient-to-r from-[#5c6bc0] to-[#512da8] text-white relative left-[-100%] w-[200%] transform transition-all ease-in-out duration-[600ms]">
               <div className="toggle-panel absolute w-1/2 h-full flex items-center justify-center flex-col px-8 text-center top-0 transform transition-all ease-in-out duration-[600ms] right-0">
                 <h1>Bienvenido de nuevo!</h1>
-                <p>Register with your personal details to use all of site features</p>
-                <button className="bg-transparent border border-white text-xs px-11 py-2 rounded-lg font-semibold tracking-wide uppercase mt-2 cursor-pointer hidden" id="register">Sign Up</button>
+                <p>Estas iniciando sesión en Talenfly</p>
               </div>
             </div>
           </div>
