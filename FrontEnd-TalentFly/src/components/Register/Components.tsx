@@ -27,13 +27,13 @@ interface RightOverlayPanelProps {
 // Contenedor principal
 export const Container = styled.div<ContainerProps>`
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 30px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
-  width: 678px;
+  width: 1000px;
   max-width: 100%;
-  min-height: 400px;
+  min-height: 480px;
 `;
 
 // Contenedor para el registro
@@ -72,30 +72,33 @@ export const SignInContainer = styled.div<SignInContainerProps>`
 `;
 
 // Formulario
-export const Form = styled.form`
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 50px;
-  height: 100%;
-  text-align: center;
+export const Form = styled.form`  
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
 `;
 
 // Título
 export const Title = styled.h1`
   font-weight: bold;
-  margin: 0;
+  font-size: 1.5em;
+  margin-bottom: 15px;
 `;
 
 // Entrada de texto
 export const Input = styled.input`
   background-color: #eee;
-  border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
-  width: 100%;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
 `;
 
 // Botón principal
@@ -152,8 +155,8 @@ export const OverlayContainer = styled.div<OverlayContainerProps>`
 // Overlay de fondo
 export const Overlay = styled.div<OverlayProps>`
   background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background: -webkit-linear-gradient(to right, #512da8, #ff416c);
+  background: linear-gradient(to right, #512da8, #ff416c);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

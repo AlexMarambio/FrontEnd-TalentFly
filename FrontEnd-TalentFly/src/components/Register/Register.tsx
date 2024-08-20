@@ -1,51 +1,66 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import * as Components from "./Components";
 import "./styles.css";
 
-// Definimos los tipos para las props de los componentes
-// Aquí se definen los componentes basados en las props arriba mencionadas
-
 const Register: React.FC = () => {
   const [signIn, toggle] = React.useState<boolean>(true);
+  const navigate = useNavigate();
+
+  const handlePostulanteSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate("/profile2");
+  };
+
+  const handleReclutadorSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate("/profile1");
+  };
 
   return (
     <Components.Container>
       <Components.SignUpContainer signingIn={signIn}>
-        <Components.Form>
-          <Components.Title>Create Account</Components.Title>
-          <Components.Input type="text" placeholder="Name" />
-          <Components.Input type="email" placeholder="Email" />
-          <Components.Input type="password" placeholder="Password" />
-          <Components.Button>Sign Up</Components.Button>
+        <Components.Form onSubmit={handlePostulanteSubmit}>
+          <Components.Title>Regístrate como postulante</Components.Title>
+          <Components.Input type="text" placeholder="Nombre" required />
+          <Components.Input type="text" placeholder="Apellido" required />
+          <Components.Input type="text" placeholder="Profesión" required />
+          <Components.Input type="email" placeholder="Email" required />
+          <Components.Input type="password" placeholder="Contraseña" required />
+          <Components.Anchor href="/login">¿Ya tienes una cuenta?</Components.Anchor>
+          <Components.Button type="submit">Crear Cuenta</Components.Button>
         </Components.Form>
       </Components.SignUpContainer>
       <Components.SignInContainer signingIn={signIn}>
-        <Components.Form>
-          <Components.Title>Sign In</Components.Title>
-          <Components.Input type="email" placeholder="Email" />
-          <Components.Input type="password" placeholder="Password" />
-          <Components.Anchor href="#">Forgot your password?</Components.Anchor>
-          <Components.Button>Sign In</Components.Button>
+        <Components.Form onSubmit={handleReclutadorSubmit}>
+          <Components.Title>Regístrate como Reclutador</Components.Title>
+          <Components.Input type="text" placeholder="Nombre de Empresa" required />
+          <Components.Input type="text" placeholder="Cargo" required />
+          <Components.Input type="text" placeholder="País" required />
+          <Components.Input type="email" placeholder="Email" required />
+          <Components.Input type="password" placeholder="Contraseña" required />
+          <Components.Anchor href="/login">¿Ya tienes una cuenta?</Components.Anchor>
+          <Components.Button type="submit">Crear Cuenta</Components.Button>
         </Components.Form>
       </Components.SignInContainer>
       <Components.OverlayContainer signingIn={signIn}>
         <Components.Overlay signingIn={signIn}>
           <Components.LeftOverlayPanel signingIn={signIn}>
-            <Components.Title>Welcome Back!</Components.Title>
+            <Components.Title>¿Buscas personal?</Components.Title>
             <Components.Paragraph>
-              To keep connected with us please login with your personal info
+              Regístrate como Reclutador para que veas los talentos disponibles en TalenFly, contactando con los mejores para tu empresa!
             </Components.Paragraph>
             <Components.GhostButton onClick={() => toggle(true)}>
-              Sign In
+              Reclutador
             </Components.GhostButton>
           </Components.LeftOverlayPanel>
           <Components.RightOverlayPanel signingIn={signIn}>
-            <Components.Title>Hello, Friend!</Components.Title>
+            <Components.Title>¿Buscas Empleo?</Components.Title>
             <Components.Paragraph>
-              Enter your personal details and start journey with us
+              Regístrate como Postulante para que veas las ofertas y nuevas oportunidades que TalenFly ofrece para ti!
             </Components.Paragraph>
             <Components.GhostButton onClick={() => toggle(false)}>
-              Sign Up
+              Postulante
             </Components.GhostButton>
           </Components.RightOverlayPanel>
         </Components.Overlay>
