@@ -15,7 +15,7 @@ const Register: React.FC = () => {
 
   return (
     <div className="m-0 p-0 box-border font-">
-      <div className="bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] flex items-center justify-center flex-col h-screen">
+      <div className="flex items-center justify-center flex-col h-screen">
         <div className="bg-white rounded-[30px] shadow-[0_5px_15px_rgba(0,0,0,0.35)] relative overflow-hidden w-[768px] max-w-full min-h-[480px]" id="container">
           <div className="form-container sign-up absolute top-0 h-full transition-all ease-in-out duration-[600ms] left-0 w-1/2 opacity-0 z-10">
             <form className="bg-white flex items-center justify-center flex-col px-10 h-full">
