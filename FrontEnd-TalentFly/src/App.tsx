@@ -6,7 +6,8 @@ import Login from './pages/LoginPage/LoginPage';
 import Register from './pages/RegPage/RegPage';
 import ProfileReclutador from './pages/Profiles/Recruiter';
 import ProfilePostulante from './pages/Profiles/Postulant';
-import Questions from './components/Questions/Questions'; 
+import Questions from './components/Questions/Questions';
+import ToolsPage from './components/Questions/ToolsPage'; 
 
 function App() {
   return (
@@ -20,9 +21,7 @@ function App() {
           <Route path="/profile1" element={<ProfileReclutador />} />
           <Route path="/profile2" element={<ProfilePostulante />} />
           <Route path="/Quiz" element={<Questions />} />
-          
-
-
+          <Route path="/ChooseQuiz" element={<ToolsPage />} />
         </Routes>
         
       </div>

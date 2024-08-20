@@ -158,7 +158,15 @@ const App: React.FC = () => {
               </div>
             )
           ) : (
-            <Circle score={finalScore} />
+            <Circle 
+              profile={{
+                name: 'Alex Marambio',
+                role: 'Curso: Python',
+                level: '',
+                validations: finalScore,
+                imgSrc: 'https://i.pravatar.cc/150?u=puntajefinal' 
+              }} 
+            />
           )}
         </div>
       </div>
