@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import * as Components from "./Components";
 import "./styles.css";
 
@@ -27,7 +27,10 @@ const Register: React.FC = () => {
           <Components.Input type="text" placeholder="Profesión" required />
           <Components.Input type="email" placeholder="Email" required />
           <Components.Input type="password" placeholder="Contraseña" required />
-          <Components.Anchor href="/login">¿Ya tienes una cuenta?</Components.Anchor>
+          {/* Reemplazando href con Link */}
+          <Link to="/login">
+            <Components.Anchor>¿Ya tienes una cuenta?</Components.Anchor>
+          </Link>
           <Components.Button type="submit">Crear Cuenta</Components.Button>
         </Components.Form>
       </Components.SignUpContainer>
@@ -39,7 +42,10 @@ const Register: React.FC = () => {
           <Components.Input type="text" placeholder="País" required />
           <Components.Input type="email" placeholder="Email" required />
           <Components.Input type="password" placeholder="Contraseña" required />
-          <Components.Anchor href="/login">¿Ya tienes una cuenta?</Components.Anchor>
+          {/* Reemplazando href con Link */}
+          <Link to="/login">
+            <Components.Anchor>¿Ya tienes una cuenta?</Components.Anchor>
+          </Link>
           <Components.Button type="submit">Crear Cuenta</Components.Button>
         </Components.Form>
       </Components.SignInContainer>
