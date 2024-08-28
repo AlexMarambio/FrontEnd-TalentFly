@@ -4,7 +4,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Homepage from './pages/Homepage/Homepage';
 import Login from './pages/LoginPage/LoginPage';
 import Register from './pages/RegPage/RegPage';
-import ProfileReclutador from './pages/Profiles/Recruiter';
+import ProfileReclutador from './pages/Profiles/Recruiter2';
 import ProfilePostulante from './pages/Profiles/Postulant';
 import Questions from './components/Questions/Questions';
 import ToolsPage from './components/Questions/ToolsPage'; 

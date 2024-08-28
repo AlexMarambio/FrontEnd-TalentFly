@@ -1,0 +1,283 @@
+import {
+  Activity,
+  ArrowUpRight,
+  CircleUser,
+  CreditCard,
+  DollarSign,
+  LucidePackage2,
+  Menu,
+  Package2,
+  Search,
+  Users,
+} from "lucide-react"
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Input } from "@/components/ui/input"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { Link } from "react-router-dom"
+import { Select, SelectTrigger, SelectValue } from "@radix-ui/react-select"
+import { Label } from "@radix-ui/react-label"
+import { SelectContent, SelectItem } from "../ui/select"
+
+export default function Dashboard() {
+  return (
+    <div className="flex min-h-screen w-full flex-col">
+      <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+          <Link
+            to="#"
+            className="flex items-center gap-2 text-lg font-semibold md:text-base"
+          >
+            <LucidePackage2 className="h-6 w-6" />
+            <span className="sr-only">Acme Inc</span>
+          </Link>
+          <Link
+            to="#"
+            className="text-foreground transition-colors hover:text-foreground"
+          >
+            Inicio
+          </Link>
+          <Link
+            to="#"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Mis Ofertas
+          </Link>
+          <Link
+            to="#"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Chats
+          </Link>
+          <Link
+            to="#"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            
+          </Link>
+          
+        </nav>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="shrink-0 md:hidden"
+            >
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <nav className="grid gap-6 text-lg font-medium">
+              <Link
+                to="#"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
+                <Package2 className="h-6 w-6" />
+                <span className="sr-only">Acme Inc</span>
+              </Link>
+              <Link to="#" className="hover:text-foreground">
+                Inicio
+              </Link>
+              <Link
+                to="#"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                Mis Ofertas
+              </Link>
+              <Link
+                to="#"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                Chats
+              </Link>
+             
+            </nav>
+          </SheetContent>
+        </Sheet>
+        <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+          <form className="ml-auto flex-1 sm:flex-initial">
+            <div className="relative">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Buscar"
+                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
+              />
+            </div>
+          </form>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="secondary" size="icon" className="rounded-full">
+                <CircleUser className="h-5 w-5" />
+                <span className="sr-only">Toggle user menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </header>
+       
+      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+        <div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
+          <Card
+            className="xl:col-span-2" x-chunk="dashboard-01-chunk-4"
+          >
+           <CardHeader>
+        <CardTitle>Create project</CardTitle>
+        <CardDescription>Deploy your new project in one-click.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form>
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" placeholder="Name of your project" />
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="framework">Framework</Label>
+              <Select>
+                <SelectTrigger id="framework">
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  <SelectItem value="next">Next.js</SelectItem>
+                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
+                  <SelectItem value="astro">Astro</SelectItem>
+                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </form>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline">Cancel</Button>
+        <Button>Deploy</Button>
+      </CardFooter>
+          </Card>
+          <Card x-chunk="dashboard-01-chunk-5">
+            <CardHeader>
+              <CardTitle>Recent Sales</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-8">
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex">
+                  <AvatarImage src="/avatars/01.png" alt="Avatar" />
+                  <AvatarFallback>OM</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none">
+                    Olivia Martin
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    olivia.martin@email.com
+                  </p>
+                </div>
+                <div className="ml-auto font-medium">+$1,999.00</div>
+              </div>
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex">
+                  <AvatarImage src="/avatars/02.png" alt="Avatar" />
+                  <AvatarFallback>JL</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none">
+                    Jackson Lee
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    jackson.lee@email.com
+                  </p>
+                </div>
+                <div className="ml-auto font-medium">+$39.00</div>
+              </div>
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex">
+                  <AvatarImage src="/avatars/03.png" alt="Avatar" />
+                  <AvatarFallback>IN</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none">
+                    Isabella Nguyen
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    isabella.nguyen@email.com
+                  </p>
+                </div>
+                <div className="ml-auto font-medium">+$299.00</div>
+              </div>
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex">
+                  <AvatarImage src="/avatars/04.png" alt="Avatar" />
+                  <AvatarFallback>WK</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none">
+                    William Kim
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    will@email.com
+                  </p>
+                </div>
+                <div className="ml-auto font-medium">+$99.00</div>
+              </div>
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex">
+                  <AvatarImage src="/avatars/05.png" alt="Avatar" />
+                  <AvatarFallback>SD</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none">
+                    Sofia Davis
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    sofia.davis@email.com
+                  </p>
+                </div>
+                <div className="ml-auto font-medium">+$39.00</div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </main>
+    </div>
+  )
+}
