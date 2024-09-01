@@ -1,37 +1,112 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import { useNavigate, Link } from "react-router-dom";
+import * as Components from "./Components";
+import "./styles.css";
+import axios from "axios";
 
-type Props = {};
+const Login2: React.FC = () => {
+  const [signIn, toggle] = React.useState<boolean>(true);
+  const navigate = useNavigate();
 
-const Login2: React.FC<Props> = () => {
+  const handlePostulanteSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = {
+      email: formData.get("email"),
+      contrasena: formData.get("contrasena"),
+    };
+  
+    try {
+      const response = await axios.post("http://localhost:8081/login/postulante", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.status === 200) {
+        navigate("/profile2");
+      } else {
+        console.error("Error during login");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleReclutadorSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = {
+      email: formData.get("email"),
+      contrasena: formData.get("contrasena"),
+    };
+  
+    try {
+      const response = await axios.post("http://localhost:8081/login/reclutador", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.status === 200) {
+        navigate("/profile1");
+      } else {
+        console.error("Error during login");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
-    <div className="m-0 p-0 box-border">
-      <div className="bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] flex items-center justify-center flex-col h-screen">
-        <div
-          className="bg-white rounded-[30px] shadow-[0_5px_15px_rgba(0,0,0,0.35)] relative overflow-hidden w-[768px] max-w-full min-h-[480px]"
-          id="container"
-        >
-
-          <div className="form-container sign-in absolute top-0 h-full transition-all ease-in-out duration-[600ms] left-0 w-1/2 z-20">
-            <form className="bg-white flex items-center justify-center flex-col px-10 h-full">
-              <h1>Inicia Sesión</h1>
-              <input className="bg-[#eee] border-none my-2 px-4 py-2 text-sm rounded-lg w-full outline-none" type="email" placeholder="Ingresa tu Email" />
-              <input className="bg-[#eee] border-none my-2 px-4 py-2 text-sm rounded-lg w-full outline-none" type="password" placeholder="Ingresa tu Contraseña" />
-              <Link to="/register" className="text-[#333] text-sm mt-3 mb-2">¿No tienes una Cuenta?</Link>
-              <Link to="/profile2" className="bg-[#512da8] text-white text-xs px-11 py-2 border border-transparent rounded-lg font-semibold tracking-wide uppercase mt-2 cursor-pointer" id="login">Iniciar Sesión</Link>
-            </form>
-          </div>
-          <div className="toggle-container absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-all ease-in-out duration-[600ms] rounded-[150px_0_0_100px] z-[1000]">
-            <div className="toggle bg-[#512da8] h-full bg-gradient-to-r from-[#5c6bc0] to-[#512da8] text-white relative left-[-100%] w-[200%] transform transition-all ease-in-out duration-[600ms]">
-              <div className="toggle-panel absolute w-1/2 h-full flex items-center justify-center flex-col px-8 text-center top-0 transform transition-all ease-in-out duration-[600ms] right-0">
-                <h1>Bienvenido de nuevo!</h1>
-                <p>Estas iniciando sesión en Talenfly</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Components.Container>
+      <Components.SignUpContainer signingIn={signIn}>
+        <Components.Form onSubmit={handlePostulanteSubmit}>
+          <Components.Title>Inicia Sesión como Postulante</Components.Title>
+          <Components.Input type="email" placeholder="Email" name="email" required />
+          <Components.Input type="password" placeholder="Contraseña" name="contrasena" required />
+          <Link to="/register">
+            <Components.Anchor>¿No tienes una cuenta? Regístrate</Components.Anchor>
+          </Link>
+          <Components.Button type="submit">Iniciar Sesión</Components.Button>
+        </Components.Form>
+      </Components.SignUpContainer>
+      <Components.SignInContainer signingIn={signIn}>
+        <Components.Form onSubmit={handleReclutadorSubmit}>
+          <Components.Title>Inicia Sesión como Reclutador</Components.Title>
+          <Components.Input type="email" placeholder="Email" name="email" required />
+          <Components.Input type="password" placeholder="Contraseña" name="contrasena" required />
+          <Link to="/register">
+            <Components.Anchor>¿No tienes una cuenta? Regístrate</Components.Anchor>
+          </Link>
+          <Components.Button type="submit">Iniciar Sesión</Components.Button>
+        </Components.Form>
+      </Components.SignInContainer>
+      <Components.OverlayContainer signingIn={signIn}>
+        <Components.Overlay signingIn={signIn}>
+          <Components.LeftOverlayPanel signingIn={signIn}>
+            <Components.Title>¿Eres Reclutador?</Components.Title>
+            <Components.Paragraph>
+              Inicia sesión para encontrar el talento que necesitas para tu empresa en TalenFly.
+            </Components.Paragraph>
+            <Components.GhostButton onClick={() => toggle(true)}>
+              Reclutador
+            </Components.GhostButton>
+          </Components.LeftOverlayPanel>
+          <Components.RightOverlayPanel signingIn={signIn}>
+            <Components.Title>¿Buscas Empleo?</Components.Title>
+            <Components.Paragraph>
+              Inicia sesión para explorar las oportunidades laborales que TalenFly ofrece para ti.
+            </Components.Paragraph>
+            <Components.GhostButton onClick={() => toggle(false)}>
+              Postulante
+            </Components.GhostButton>
+          </Components.RightOverlayPanel>
+        </Components.Overlay>
+      </Components.OverlayContainer>
+    </Components.Container>
   );
 };
 
