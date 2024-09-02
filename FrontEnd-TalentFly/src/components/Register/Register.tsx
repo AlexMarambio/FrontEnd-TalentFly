@@ -21,7 +21,7 @@ const Register: React.FC = () => {
     };
   
     try {
-      const response = await axios.post("http://localhost:8081/register/postulante", data, {
+      const response = await axios.post("https://betf.recuerdodigital.cl/register/postulante", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -50,7 +50,7 @@ const Register: React.FC = () => {
     };
   
     try {
-      const response = await axios.post("http://localhost:8081/register/reclutador", data, {
+      const response = await axios.post("https://betf.recuerdodigital.cl/register/reclutador", data, {
         headers: {
           "Content-Type": "application/json",
         },

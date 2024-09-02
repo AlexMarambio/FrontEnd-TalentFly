@@ -98,7 +98,7 @@ function ProfilePostulant() {
   useEffect(() => {
     const fetchDbUserInfo = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/dashboard/postulante');
+        const response = await axios.get('https://betf.recuerdodigital.cl/dashboard/postulante');
         const firstItem = response.data[0]; // Accede al primer elemento del array
         console.log(firstItem.nombre_empresa); 
         const updatedInfo = {
