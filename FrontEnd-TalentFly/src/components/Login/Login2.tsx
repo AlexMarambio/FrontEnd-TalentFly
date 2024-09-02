@@ -10,7 +10,7 @@ const Login2: React.FC = () => {
 
   const handlePostulanteSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+   
     const formData = new FormData(e.target as HTMLFormElement);
     const data = {
       email: formData.get("email"),
@@ -24,10 +24,10 @@ const Login2: React.FC = () => {
         },
       });
   
-      if (response.status === 200) {
+      if (response.data.message === "Login successful!") {
         navigate("/profile2");
       } else {
-        console.error("Error during login");
+        console.error(response.data.error || "Error during login");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -50,10 +50,10 @@ const Login2: React.FC = () => {
         },
       });
   
-      if (response.status === 200) {
+      if (response.data.message === "Login successful!") {
         navigate("/profile1");
       } else {
-        console.error("Error during login");
+        console.error(response.data.error || "Error during login");
       }
     } catch (error) {
       console.error("Error:", error);

@@ -62,12 +62,12 @@ app.post('/login/postulante', (req, res) => {
                     secure: true, // Solo se envía en HTTPS (asegúrate de que esté activo en producción)
                     sameSite: 'strict', // Para prevenir ataques CSRF
                 });
-                return res.json("Login successful!");
+                return res.json({ message: "Login successful!" });
             } else {
-                return res.json("Invalid email or password");
+                return res.status(401).json({ error: "Invalid email or password" });
             }
         } else {
-            return res.json("Invalid email or password");
+            return res.status(401).json({ error: "Invalid email or password" });
         }
     });
 });
@@ -109,12 +109,12 @@ app.post('/login/reclutador', (req, res) => {
                     secure: true, // Solo se envía en HTTPS (asegúrate de que esté activo en producción)
                     sameSite: 'strict', // Para prevenir ataques CSRF
                 });
-                return res.json("Login successful!");
+                return res.json({ message: "Login successful!" });
             } else {
-                return res.json("Invalid email or password");
+                return res.status(401).json({ error: "Invalid email or password" });
             }
         } else {
-            return res.json("Invalid email or password");
+            return res.status(401).json({ error: "Invalid email or password" });
         }
     });
 });
