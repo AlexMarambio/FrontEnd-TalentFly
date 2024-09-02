@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import PostulantCard from '../Cards/PostulantCards/PostulantCards';
 import JobOfferForm from '../Cards/PostulantCards/JobOfferForm';
 
@@ -28,10 +29,62 @@ interface JobOffer {
 }
 
 const CompanyProfile: React.FC = () => {
-  const companyInfo = {
-    name: 'Tech Innovators Ltd.',
-    description: 'Tech Innovators Ltd. is a leading tech company specializing in innovative software solutions and cutting-edge technologies. We are always on the lookout for top talent to join our dynamic team.',
-    imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvXzKDKAR1D6fayUg12DRFMZTXigK_4I8jeg&s'
+  const [companyInfo, setCompanyInfo] = useState({
+    name: '',
+    description: '',
+    imgSrc: ''
+  });
+
+  const [jobOffers, setJobOffers] = useState<JobOffer[]>([]);
+  const [editingJobOffer, setEditingJobOffer] = useState<JobOffer | null>(null);
+
+  const [experience, setExperience] = useState(50);
+  const [technicalSkills, setTechnicalSkills] = useState(50);
+  const [softSkills, setSoftSkills] = useState(50);
+
+  const profileRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  useEffect(() => {
+    const fetchCompanyInfo = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/dashboard/reclutador');
+        const { nombre_empresa, email, pais } = response.data;
+        setCompanyInfo({
+          name: nombre_empresa,
+          description: email,
+          imgSrc: pais
+        });
+      } catch (error) {
+        console.error('Error fetching company info:', error);
+      }
+    };
+
+    fetchCompanyInfo();
+  }, []);
+
+  const handleFilter = (skillName: string) => {
+    const profile = profiles.find(profile => profile.skills.some(skill => skill.name === skillName));
+    if (profile) {
+      const profileId = `${profile.name}-${skillName}`;
+      profileRefs.current[profileId]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  const getProfileId = (profileName: string, skillName: string) => {
+    return `${profileName}-${skillName}`;
+  };
+
+  const handleAddJobOffer = (jobOffer: JobOffer) => {
+    if (editingJobOffer) {
+      setJobOffers(jobOffers.map(offer => offer.id === jobOffer.id ? jobOffer : offer));
+    } else {
+      setJobOffers([...jobOffers, jobOffer]);
+    }
+    setEditingJobOffer(null);
+  };
+
+  const handleEditJobOffer = (jobOffer: JobOffer) => {
+    setEditingJobOffer(jobOffer);
   };
 
   const profiles: Profile[] = [
@@ -101,40 +154,6 @@ const CompanyProfile: React.FC = () => {
       imgSrc: 'https://i.pravatar.cc/150?u=diegope'
     },
   ];
-
-  const [jobOffers, setJobOffers] = useState<JobOffer[]>([]);
-  const [editingJobOffer, setEditingJobOffer] = useState<JobOffer | null>(null);
-
-  const [experience, setExperience] = useState(50);
-  const [technicalSkills, setTechnicalSkills] = useState(50);
-  const [softSkills, setSoftSkills] = useState(50);
-
-  const profileRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-
-  const handleFilter = (skillName: string) => {
-    const profile = profiles.find(profile => profile.skills.some(skill => skill.name === skillName));
-    if (profile) {
-      const profileId = `${profile.name}-${skillName}`;
-      profileRefs.current[profileId]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
-  const getProfileId = (profileName: string, skillName: string) => {
-    return `${profileName}-${skillName}`;
-  };
-
-  const handleAddJobOffer = (jobOffer: JobOffer) => {
-    if (editingJobOffer) {
-      setJobOffers(jobOffers.map(offer => offer.id === jobOffer.id ? jobOffer : offer));
-    } else {
-      setJobOffers([...jobOffers, jobOffer]);
-    }
-    setEditingJobOffer(null);
-  };
-
-  const handleEditJobOffer = (jobOffer: JobOffer) => {
-    setEditingJobOffer(jobOffer);
-  };
 
   return (
     <div className="min-h-screen bg-gray-100 px-32 py-8">

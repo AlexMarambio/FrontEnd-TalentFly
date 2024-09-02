@@ -9,17 +9,43 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors);
 app.use(express.json());
 app.use(cookieParser()); 
 
-const db = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.DB_USUARIO,
-    password: process.env.DB_PASS,
-    port: process.env.PORT,
-    database: "cta77813_talenflyDB"
-});
+let db;
+
+function handleDisconnect() {
+    db = mysql.createConnection({
+        host: process.env.HOST,
+        user: process.env.DB_USUARIO,
+        password: process.env.DB_PASS,
+        port: process.env.PORT,
+        database: "cta77813_talenflyDB"
+    });
+
+    db.connect((err) => {
+        if (err) {
+            console.log('Error connecting to database:', err);
+            setTimeout(handleDisconnect, 2000); // Intentar reconectar después de 2 segundos
+        } else {
+            console.log('Connected to database');
+        }
+    });
+
+    db.on('error', (err) => {
+        console.log('Database error', err);
+
+        if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNRESET') {
+            console.log('Attempting to reconnect...');
+            handleDisconnect(); // Reconectar si la conexión se perdió o fue reseteada
+        } else {
+            throw err; // Para otros errores, lanzar la excepción
+        }
+    });
+}
+
+handleDisconnect();
 
 app.get('/', (req, res) => {
     return res.json("From backend");
@@ -119,7 +145,7 @@ app.post('/login/reclutador', (req, res) => {
     });
 });
 
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard/postulante', (req, res) => {
     const sessionId = req.cookies.session_id;
     if (sessionId) {
         // Realiza una consulta a la base de datos usando el sessionId
@@ -130,6 +156,20 @@ app.get('/dashboard', (req, res) => {
         });
     } else {
         return res.status(401).json("Unauthorized");
+    }
+});
+
+app.get('/dashboard/reclutador', (req, res) => {
+    const sessionId = req.cookies.session_id;
+    if (sessionId) {
+        // Realiza una consulta a la base de datos usando el sessionId
+        const sql = "SELECT * FROM reclutadores WHERE id = ?";
+        db.query(sql, [sessionId], (err, data) => {
+            if (err) return res.json(err);
+            return res.json(data);
+        });
+    } else {
+        return res.status(401).json("Unauthorized xD");
     }
 });
 
