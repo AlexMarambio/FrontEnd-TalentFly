@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import PostulantCard from '../Cards/PostulantCards/PostulantCards';
 import JobOfferForm from '../Cards/PostulantCards/JobOfferForm';
+axios.defaults.withCredentials = true;
 
 interface Skill {
   name: string;
@@ -30,8 +31,8 @@ interface JobOffer {
 
 const CompanyProfile: React.FC = () => {
   const [companyInfo, setCompanyInfo] = useState({
-    name: '',
-    description: '',
+    name: 'usuario',
+    description: 'pais',
     imgSrc: ''
   });
 
@@ -48,12 +49,15 @@ const CompanyProfile: React.FC = () => {
     const fetchCompanyInfo = async () => {
       try {
         const response = await axios.get('http://localhost:8081/dashboard/reclutador');
-        const { nombre_empresa, email, pais } = response.data;
-        setCompanyInfo({
-          name: nombre_empresa,
-          description: email,
-          imgSrc: pais
-        });
+        const firstItem = response.data[0]; // Accede al primer elemento del array
+        console.log(firstItem.nombre_empresa); 
+        const updatedInfo = {
+          name: firstItem.nombre_empresa,
+          description: firstItem.email,
+          imgSrc: firstItem.pais
+        };
+        setCompanyInfo(updatedInfo);
+        console.log('Updated Company Info:', updatedInfo); // Verifica que el estado se actualice correctamente
       } catch (error) {
         console.error('Error fetching company info:', error);
       }

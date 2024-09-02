@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
 import NavbarPostulant from '../Navbar/NavbarPostulant';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 Chart.register(ArcElement);
 
@@ -20,6 +22,11 @@ function ProfilePostulant() {
     studies: "Ingeniería Civil Informática - Universidad Diego Portales",
     avatar: "https://i.pravatar.cc/150?u=alexmuñoz",
     experience: "1 año"
+  });
+  const [dbUser, setDbUser] = useState({
+    name: "",
+    lastname:"",
+    email: ""
   });
 
   const [company] = useState([
@@ -88,6 +95,27 @@ function ProfilePostulant() {
     }
   ]);
 
+  useEffect(() => {
+    const fetchDbUserInfo = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/dashboard/postulante');
+        const firstItem = response.data[0]; // Accede al primer elemento del array
+        console.log(firstItem.nombre_empresa); 
+        const updatedInfo = {
+          name: firstItem.nombre,
+          lastname: firstItem.apellido,
+          email: firstItem.email
+        };
+        setDbUser(updatedInfo);
+        console.log('Updated Company Info:', updatedInfo); // Verifica que el estado se actualice correctamente
+      } catch (error) {
+        console.error('Error fetching company info:', error);
+      }
+    };
+
+    fetchDbUserInfo();
+  }, []);
+
   const [editableUser, setEditableUser] = useState(user);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -133,7 +161,7 @@ function ProfilePostulant() {
       </nav>
 
       <div className="text-center m-4">
-        <h1 className='text-5xl text-[#7a69de] mb-6 font-bold'>Bienvenido {user.nick}!</h1>
+        <h1 className='text-5xl text-[#7a69de] mb-6 font-bold'>Bienvenido {dbUser.name} {dbUser.lastname}!</h1>
 
         {isEditing ? (
           <form className='block rounded-3xl userCardTF mx-auto lg:flex'>
@@ -163,8 +191,8 @@ function ProfilePostulant() {
               </div>
               <div className='relative z-10 p-8'>
                 <img src={user.avatar} alt="Avatar" className="w-32 h-32 mx-auto rounded-full mb-4" />
-                <h3 className="text-xl font-semibold mb-24">{user.nick}</h3>
-                <p className='text-left'><strong>Correo:</strong> {user.email}</p>
+                <h3 className="text-xl font-semibold mb-24">{dbUser.name} {dbUser.lastname}</h3>
+                <p className='text-left'><strong>Correo:</strong> {dbUser.email}</p>
                 <p className='text-left'>{user.description}</p>
                 <div className='bg-[#C6D7E8] rounded-2xl p-4 mt-7'>
                   <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>

@@ -9,7 +9,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-app.use(cors);
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  }));
 app.use(express.json());
 app.use(cookieParser()); 
 
@@ -86,7 +89,7 @@ app.post('/login/postulante', (req, res) => {
                     httpOnly: true, // Solo accesible vía HTTP(S), no desde JavaScript
                     maxAge: 24 * 60 * 60 * 1000, // 1 día
                     secure: true, // Solo se envía en HTTPS (asegúrate de que esté activo en producción)
-                    sameSite: 'strict', // Para prevenir ataques CSRF
+                    sameSite: 'lax', // Para prevenir ataques CSRF
                 });
                 return res.json({ message: "Login successful!" });
             } else {
@@ -133,7 +136,7 @@ app.post('/login/reclutador', (req, res) => {
                     httpOnly: true, // Solo accesible vía HTTP(S), no desde JavaScript
                     maxAge: 24 * 60 * 60 * 1000, // 1 día
                     secure: true, // Solo se envía en HTTPS (asegúrate de que esté activo en producción)
-                    sameSite: 'strict', // Para prevenir ataques CSRF
+                    sameSite: 'lax', // Para prevenir ataques CSRF
                 });
                 return res.json({ message: "Login successful!" });
             } else {

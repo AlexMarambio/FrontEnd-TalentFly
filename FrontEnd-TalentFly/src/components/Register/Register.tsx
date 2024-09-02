@@ -28,7 +28,7 @@ const Register: React.FC = () => {
       });
   
       if (response.status === 200) {
-        navigate("/profile2");
+        navigate("/login");
       } else {
         console.error("Error during registration");
       }
@@ -57,7 +57,7 @@ const Register: React.FC = () => {
       });
   
       if (response.status === 200) {
-        navigate("/profile1");
+        navigate("/login");
       } else {
         console.error("Error during registration");
       }
