@@ -48,7 +48,7 @@ const CompanyProfile: React.FC = () => {
   useEffect(() => {
     const fetchCompanyInfo = async () => {
       try {
-        const response = await axios.get('https://betf.recuerdodigital.cl/dashboard/reclutador');
+        const response = await axios.get('https://backend.talenfly.com/dashboard/reclutador');
         const firstItem = response.data[0]; // Accede al primer elemento del array
         console.log(firstItem.nombre_empresa); 
         const updatedInfo = {

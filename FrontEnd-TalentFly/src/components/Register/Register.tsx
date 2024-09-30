@@ -21,7 +21,7 @@ const Register: React.FC = () => {
     };
   
     try {
-      const response = await axios.post("https://betf.recuerdodigital.cl/register/postulante", data, {
+      const response = await axios.post("https://backend.talenfly.com/register/postulante", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -50,7 +50,7 @@ const Register: React.FC = () => {
     };
   
     try {
-      const response = await axios.post("https://betf.recuerdodigital.cl/register/reclutador", data, {
+      const response = await axios.post("https://backend.talenfly.com/register/reclutador", data, {
         headers: {
           "Content-Type": "application/json",
         },
