@@ -26,6 +26,10 @@ interface RightOverlayPanelProps {
 
 // Contenedor principal
 export const Container = styled.div<ContainerProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aling-items: center;
   background-color: #fff;
   border-radius: 30px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -34,6 +38,8 @@ export const Container = styled.div<ContainerProps>`
   width: 1000px;
   max-width: 100%;
   min-height: 480px;
+  height: auto;
+  margin: auto;
 `;
 
 // Contenedor para el registro

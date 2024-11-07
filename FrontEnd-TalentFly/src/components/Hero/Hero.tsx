@@ -29,7 +29,7 @@ const Hero = () => {
             <Link to="/login"
               className="py-5 px-10 text-2xl font-bold text-white bg-[#796AD9] rounded lg:py-4 hover:opacity-70"
             >
-              Empezemos!
+              Empecemos!
             </Link>
           </div>
         </div>

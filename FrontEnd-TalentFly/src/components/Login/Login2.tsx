@@ -61,6 +61,7 @@ const Login2: React.FC = () => {
   };
 
   return (
+    <div className="flex items-center justify-center min-h-screen">
     <Components.Container>
       <Components.SignUpContainer signingIn={signIn}>
         <Components.Form onSubmit={handlePostulanteSubmit}>
@@ -107,6 +108,7 @@ const Login2: React.FC = () => {
         </Components.Overlay>
       </Components.OverlayContainer>
     </Components.Container>
+    </div>
   );
 };
 
